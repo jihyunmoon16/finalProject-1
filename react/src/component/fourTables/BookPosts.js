@@ -9,7 +9,7 @@ function BookPosts() {
 
   async function retrievePosts() {
     await axios
-      .get("http://localhost:8000/book?page=1&searchType=&keyword=&order=")
+      .get("/book?page=1&searchType=&keyword=&order=")
       .then((response) => setPosts(response.data.content));
   }
   useEffect(() => {

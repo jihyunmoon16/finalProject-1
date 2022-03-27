@@ -102,7 +102,7 @@ function PostReply({ reply }) {
         alert("추천을 취소하셨습니다");
       })
       .catch((error) => {
-        console.log(error); 
+        console.log(error);
       });
   };
 
@@ -119,7 +119,7 @@ function PostReply({ reply }) {
         <div>{reply.replyContent}</div>
       )}
       <span className={styles.commentTime}>
-        {moment(reply.replyRegdate).format("LLL")}
+        {reply.replyRegdate}
       </span>
       <span>
         {nickname === reply.nickname && (

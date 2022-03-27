@@ -9,7 +9,7 @@ function WorryPosts() {
 
   async function retrievePosts() {
     await axios
-      .get("http://localhost:8000/worry?page=1&searchType=&keyword=&order=")
+      .get("/worry?page=1&searchType=&keyword=&order=")
       .then((response) => setPosts(response.data.content));
   }
   useEffect(() => {

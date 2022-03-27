@@ -1,7 +1,10 @@
 import React from "react";
 import styles from "./CareerBoardTable.module.css";
+import useStore from "../plugins/store";
 
-function CareerBoardTable({ tableData, moment }) {
+function CareerBoardTable({ tableData }) {
+  const baseUrl = useStore((state) => state.url);
+
   const {
     nickname,
     postLike,
@@ -42,7 +45,7 @@ function CareerBoardTable({ tableData, moment }) {
             <td className={styles.wView}>조회수: {postViews}</td>
             <td className={styles.wLike}>추천수: {postLike}</td>
             <td className={styles.wDate}>
-              작성일: {moment(postRegdate).format("l")}
+              작성일: {postRegdate}
             </td>
           </tr>
         </thead>
@@ -53,7 +56,7 @@ function CareerBoardTable({ tableData, moment }) {
                 <td key={i}>
                   <img
                     className={styles.miss}
-                    src={`http://localhost:8000/get/image/${name.filename}`}
+                    src={`${baseUrl}/get/image/${name.filename}`}
                     width="200%"
                     alt="이미지"
                   />

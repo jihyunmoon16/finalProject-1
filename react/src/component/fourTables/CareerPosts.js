@@ -9,7 +9,7 @@ function CareerPosts() {
 
   async function retrievePosts() {
     await axios
-      .get("http://localhost:8000/career?page=1&searchType=&keyword=&order=")
+      .get("/career?page=1&searchType=&keyword=&order=")
       .then((response) => setPosts(response.data.content));
   }
   useEffect(() => {

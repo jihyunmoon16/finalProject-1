@@ -85,6 +85,17 @@ function ReviewComment() {
           const date = new Date(reply.replyRegdate);
           reply.replyRegdate = dateFormat(date);
           console.log(date);
+          console.log(reply);
+
+          if(reply.boardName == "review"){
+            reply.boardName="리뷰게시판"
+          }else if(reply.boardName == "career"){
+            reply.boardName="취업준비게시판"
+          }else if(reply.boardName == "book"){
+            reply.boardName="리뷰게시판"
+          }else if(reply.boardName == "worry"){
+            reply.boardName="고민상담게시판"
+          }
         }
         //업데이트
         setPostInfo(response.data);

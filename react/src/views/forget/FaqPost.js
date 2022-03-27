@@ -166,7 +166,7 @@ function FaqPost() {
       {postObject && (
         <div className={styles.postSection}>
           <div className={styles.postCommentWrapper}></div>
-          <CareerBoardTable moment={moment} tableData={postObject} />
+          <CareerBoardTable tableData={postObject} />
           <div>
             {postObject !== null && nickname === postObject.nickname && (
               <div className={styles.commentAddBtnWrapper}>

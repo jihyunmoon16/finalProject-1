@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { Link } from 'react-router-dom';
-
+import useStore from "../../plugins/store";
 
 
 function Study() {
 
     const [posts, setPosts] = useState([]);
+    const baseUrl = useStore((state) => state.url);
+
     useEffect(() => {
+
         axios.get("/study")
             .then((response) => {
                 setPosts(response.data);
@@ -40,7 +43,7 @@ function Study() {
                                         <div>{post.postTitle}</div>
                                         <div>{post.board.boardWriter}</div>
                                         {post.image.map((image, i) =>
-                                            <img src={`http://localhost:8000/get/image/${image.name}`} width="10%" alt="이미지" />
+                                            <img src={`${baseUrl}/get/image/${image.name}`} width="10%" alt="이미지" />
                                         )}
                                         {/* < h3 > 사용언어 : {data[0].uselanguage}</h3> */}
                                     </button>

@@ -57,20 +57,19 @@ function MenuBar() {
             이벤트
           </Link>
           <ul>
-            <li>
+            {/* <li>
               <Link className={styles.menuLink} to="#">
                 코딩대회 일정
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link className={styles.menuLink} to="jobfair">
                 취업박람회 일정
               </Link>
             </li>
             <li>
-            
-              <Link className={styles.menuLink} to="/Start">
-                심리테스트
+              <Link className={styles.menuLink} to="/testmainpage">
+                재미로 하는 테스트
               </Link>
             </li>
           </ul>
@@ -87,7 +86,7 @@ function MenuBar() {
               </Link>
             </li>
             <li>
-              <Link className={styles.menuLink} to="/FAQ">
+              <Link className={styles.menuLink} to="customer/FAQ">
                 자주하는 질문
               </Link>
             </li>

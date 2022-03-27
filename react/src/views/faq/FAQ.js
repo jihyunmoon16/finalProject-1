@@ -1,29 +1,31 @@
+import { red } from "@material-ui/core/colors";
 import React, { Fragment } from "react";
 import Faq from "react-faq-component";
 import data from "./data";
+import styles from "./FAQ.module.css";
 
 export default function FAQ() {
-    return (
-        <Fragment>
-            <Faq
-                data={data}
-                styles={{
-                    bgColor: "white",
-                    titleTextColor: "#48482a",
-                    rowTitleColor: "#78789a",
-                    rowTitleTextSize: "large",
-                    rowContentColor: "#48484a",
-                    rowContentTextSize: "16px",
-                    rowContentPaddingTop: "10px",
-                    rowContentPaddingBottom: "10px",
-                    rowContentPaddingLeft: "50px",
-                    rowContentPaddingRight: "150px",
-                    arrowColor: "red"
-                }}
-                config={{
-                    animate: true
-                }}
-            />
-        </Fragment>
-    );
+  return (
+    <div className={styles.faqContainer}>
+      <Faq
+        data={data}
+        styles={{
+          bgColor: "white",
+          titleTextColor: `#a6b1e1`,
+          titleTextSize: "2.5rem",
+          rowTitleColor: "black",
+          rowTitleTextSize: "1.5rem",
+          rowContentColor: "black",
+          rowContentTextSize: "1rem",
+          rowContentPaddingTop: "10px",
+          rowContentPaddingBottom: "20px",
+          rowContentPaddingLeft: "30px",
+          arrowColor: "gray",
+        }}
+        config={{
+          animate: true,
+        }}
+      />
+    </div>
+  );
 }
