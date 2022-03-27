@@ -13,10 +13,11 @@ function Header(props) {
 
   const store = useStore();
   let navigate = useNavigate();
+  const [searchWord, setSearchWord] = useState("");
 
   useEffect(() => {
     if (localStorage.hasOwnProperty("accessToken") && localStorage.hasOwnProperty("refreshToken")) {
-      console.log("리프레쉬토큰으로 토큰을 새로 받아서 자동로그인")
+      // console.log("리프레쉬토큰으로 토큰을 새로 받아서 자동로그인")
       const accessToken = localStorage.getItem("accessToken");
       const refreshToken = localStorage.getItem("refreshToken");
       store.continueLogin(accessToken, refreshToken);
@@ -27,10 +28,20 @@ function Header(props) {
   }, []);
 
   const logout = () => {
-    localStorage.removeItem("username");
     store.logout();
 
     navigate("/");
+  };
+  const goUniSearch = () => {
+    // console.log(searchWord);
+    store.setSearchWord(searchWord);
+    navigate(`/unified/all?page=1&searchType=titleOrContent&keyword=${searchWord}&order=`);
+  };
+  const keyUpSearch = (e) => {
+    // console.log(e.key);
+    if (e.key === 'Enter') {
+      goUniSearch();
+    }
   };
 
   return (
@@ -45,11 +56,19 @@ function Header(props) {
 
           <div className={styles.searchBar}>
             <div className={styles.searchIconContainer}>
-              <img src={searchIcon} alt=""></img>
+              <img src={searchIcon} alt="" onClick={goUniSearch}></img>
             </div>
             <input
               className={styles.searchInput}
               placeholder="검색어를 입력해주세요"
+              onChange={(event) => {
+                const word = event.target.value;
+                const replaced = word.replace(/(\s*)/g, "");
+                // console.log(replaced);
+                setSearchWord(replaced);
+
+              }}
+              onKeyUp={keyUpSearch}
             ></input>
           </div>
 

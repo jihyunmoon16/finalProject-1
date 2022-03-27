@@ -260,6 +260,32 @@ public class BoardServiceImpl implements BoardService {
 		
 		return list;
 	}
+	@Override  //게시글 통합검색
+	public Page<Post> getUnifiedSearch(String boardName, String searchType, String keyword, Pageable pageable) {
+		//메인페이지 통합검색: 제목+내용 / 모든 게시판 게시글을 대상으로 검색후 각 게시판 별로 조회가능.
+		
+		Page<Post> list = null;
+		int boardNo = 0;
+		
+		if(boardName.equals("all")) {
+			list = postRepo.getUniSearchPostLikeTitleOrContent(keyword, pageable);
+			
+		}else {
+
+			boardNo = BoardGroup.valueOf(boardName).getValue();//게시판 번호 조회
+			
+			list = postRepo.getPostLikeTitleOrContent(boardNo, keyword, pageable);
+		}
+		
+		list.forEach(post -> {
+			User user = userRepo.findById(post.getId()).get();
+			post.setNickname(user.getNickname());
+			post.setKorBoardName(BoardGroup.getBoardGroupByNo(post.getBoard().getBoardNo()).getKorName());
+			
+		});
+		
+		return list;
+	}
 	
 	@Override  //내가 쓴 게시글 검색
 	public Page<Post> findMyPost(String nickname, String searchType, String keyword, Pageable pageable) {
@@ -315,7 +341,7 @@ public class BoardServiceImpl implements BoardService {
 		
 		list.forEach(reply -> {
 			reply.setPostNo(reply.getPost().getPostNo());
-			reply.setBoardName(BoardGroup.getBoardNameByNo(reply.getBoardNo()).name());
+			reply.setBoardName(BoardGroup.getBoardGroupByNo(reply.getBoardNo()).name());
 			reply.setNickname(nickname);
 		});
 		

@@ -37,7 +37,7 @@ public class JWTUtil {
 	Key reKey = Keys.hmacShaKeyFor(REFRESH_KEY.getBytes(StandardCharsets.UTF_8));
 
 	private long accessExpire = 60*1; //유효기간: 1시간! 60*1
-	private long refreshExpire = 60*24*14; //유효기간 : 2주 
+	private long refreshExpire = 60*24*7; //유효기간 : 1주 
 	
 	public String generateAccessToken(MemberAuthDTO memberDTO) throws InvalidKeyException, UnsupportedEncodingException {
 		

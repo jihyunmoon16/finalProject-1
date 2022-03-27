@@ -10,7 +10,7 @@ import com.chodae.find.domain.User;
 public interface UserFindService {
 	
 	String searchId(String name, String email);
-	List<User> isUser(String login_id,String email);
+	String isUser(String login_id,String email);
 	int updatePassword(String id, String password);
 	
 	User getUserEntityByCredentials(String loginId, String password, PasswordEncoder passwordEncoder);

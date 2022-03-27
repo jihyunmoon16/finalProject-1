@@ -5,8 +5,10 @@ import * as Yup from "yup";
 import styles from "./CreatePost.module.css";
 import { useNavigate } from "react-router-dom";
 import Preview from "./Preview";
+import useStore from "../../plugins/store";
 
 function CreatePost() {
+  const member = useStore((state) => state.member);
   let navigate = useNavigate();
 
   //글 수정시 글 수정페이지로 넘어오면서 기존 글 정보로 initialValues를 초기화 해줘야되나?
@@ -53,7 +55,7 @@ function CreatePost() {
     formData.append("title", title);
     formData.append("content", content);
     //나중에 데이터값 받아와서 수정
-    formData.append("nickname", localStorage.getItem("username"));
+    formData.append("nickname", member.nickname);
     formData.append("category", JSON.stringify(categoryArr));
 
     if (image !== undefined) {
@@ -67,7 +69,7 @@ function CreatePost() {
         },
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         navigate(-1);
       })
       .catch((error) => {
@@ -99,8 +101,8 @@ function CreatePost() {
               <option value="book">리뷰게시판</option>
               <option value="worry">고민상담</option>
               <option value="career">취업준비</option>
-              <option value="news">IT뉴스</option>
-              <option value="event">이벤트</option>
+              {/* <option value="news">IT뉴스</option> */}
+              {/* <option value="event">이벤트</option> */}
             </Field>
             <div>
               <label>카테고리</label>
@@ -198,6 +200,7 @@ function CreatePost() {
               autocomplete="off"
               className={styles.titleField}
               name="title"
+              placeholder="제목을 작성해주세요"
             />
             <label>본문: </label>
             <ErrorMessage
@@ -209,7 +212,7 @@ function CreatePost() {
               autocomplete="off"
               name="content"
               component="textarea"
-              placeholder="글 내용과 주로 사용하는 언어 및 기타 내용을 적어주세요"
+              placeholder="내용을 작성해주세요"
               className={styles.bodyField}
             />
 

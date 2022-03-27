@@ -51,27 +51,35 @@ public class FindController {
 	
 	//성함+메일로 [로그인용 아이디] 찾기
 	@GetMapping("/find/id")
-	public String test(@RequestParam("name") String name, @RequestParam("email") String email) {
+	public ResponseEntity<String> test(@RequestParam("name") String name, @RequestParam("email") String email) {
 		log.info("이름:"+name+",이메일:"+email);
 		//서비스 호출
 		String foundId = userFindService.searchId(name, email);
 		
 		log.info(foundId);
-		return foundId; 
+		
+		if(foundId == null) {
+			return new ResponseEntity<String>("NOT FOUND", HttpStatus.FORBIDDEN);	
+		}
+		
+		return new ResponseEntity<String>(foundId, HttpStatus.OK);	
 	}
 	
 	
 	//아이디와 이메일 일치하는 회원 존재시 -> 결과값 반환, 프론트에서는 비밀번호 재설정 창으로 이동
 	@GetMapping("/find/user")
-	public List<User> isUser(@RequestParam("loginId") String loginId, @RequestParam("email") String email) {
-		List<User> list = userFindService.isUser(loginId, email);
-		return list;
+	public ResponseEntity<String> isUser(@RequestParam("loginId") String loginId, @RequestParam("email") String email) {
+		String foundId = userFindService.isUser(loginId, email);
+		
+		if(foundId ==null) {
+			return new ResponseEntity<String>("NOT FOUND", HttpStatus.FORBIDDEN);
+		}
+		
+		return new ResponseEntity<String>(foundId, HttpStatus.OK);
 	}
 
 	//비밀번호 재설정 : 비밀번호 업데이트 
-
 	//암호화하여 저장
-
 	@PutMapping("/find/ps")
 	public int updatePs(@RequestParam("id") String id, @RequestParam("password") String password) {
 		log.info("로그인아이디:"+id+",업데이트 비밀번호:"+password);

@@ -37,8 +37,24 @@ public class BoardController {
 		
 	}
 
-	//전체 조회 + 검색 
-	//분류 :  카테고리(지역,사용언어, 수준, 프로그램,분야:풀스택, 프론트엔드, 백엔드 ...), 평점,
+	//전체 통합검색 (제목+내용)
+	@Transactional
+	@GetMapping("/unified/{boardName}")
+	Page<Post> getUniSearchPost(@PathVariable String boardName, PageVO pageVo,
+			@RequestParam String searchType,
+			@RequestParam String keyword,
+			@RequestParam(required = false, defaultValue = "postRegdate") String order){
+		
+		log.info(""+pageVo+":::"+searchType+"::::"+keyword);
+		log.info(""+pageVo.makePageable(0, order)); 
+		
+		Page<Post> result = boardService.getUnifiedSearch(boardName, searchType, keyword, pageVo.makePageable(0, order));
+		
+		return result;	
+	}
+	
+	
+	//각 게시판 별 전체 조회 + 검색 
 	@Transactional
 	@GetMapping("/{boardName}")
 	Page<Post> getSearchPost(@PathVariable String boardName, PageVO pageVo,
@@ -50,7 +66,7 @@ public class BoardController {
 		log.info(""+pageVo+":::"+searchType+"::::"+keyword);
 		log.info(""+pageVo.makePageable(0, order)); 
 		
-		Page<Post> result = boardService.searchPost(boardName, searchType, keyword,pageVo.makePageable(0, order));
+		Page<Post> result = boardService.searchPost(boardName, searchType, keyword, pageVo.makePageable(0, order));
 		
 		return result;	
 	}

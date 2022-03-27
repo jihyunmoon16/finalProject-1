@@ -43,12 +43,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		http.authorizeHttpRequests().antMatchers("/").permitAll();
 		http.authorizeHttpRequests().antMatchers("/api/**").permitAll();
-		http.authorizeHttpRequests().antMatchers("/api/login").permitAll();
 		http.authorizeHttpRequests().antMatchers("/api/find/**").permitAll();
-		
-		//고객센터
-//		http.authorizeHttpRequests().antMatchers("/faq").permitAll();
-//		http.authorizeHttpRequests().antMatchers("/notice/**").permitAll();
+		http.authorizeHttpRequests().antMatchers(HttpMethod.POST,"/api/login").permitAll();
+		http.authorizeHttpRequests().antMatchers(HttpMethod.POST,"/api/refresh").permitAll();
 		
 		//글 조회 추가, 삭제, 수정,  테스트필요
 		http.authorizeHttpRequests().antMatchers(HttpMethod.GET,"/*/").permitAll();

@@ -1,12 +1,10 @@
 package com.chodae.find5.repository;
 
-import java.util.List;
 import java.util.Optional;
 
 import javax.transaction.Transactional;
 
 import org.springframework.data.jpa.repository.EntityGraph;
-import org.springframework.data.jpa.repository.EntityGraph.EntityGraphType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -15,9 +13,9 @@ import com.chodae.find.domain.User;
 
 public interface UserRepo extends JpaRepository<User, Long> {
 
-	List<User> findUserByNameAndEmail(String name, String email);////////////////////////// 아이디 찾기 
+	Optional<User> findUserByNameAndEmail(String name, String email);
 	
-	List<User> findUserByLoginIdAndEmail(String loginId, String email);////////////////////////// 비밀번호 찾기  - 유저 확인
+	Optional<User> findUserByLoginIdAndEmail(String loginId, String email);
 	
 	//update , delete, insert 시 @Transctional, @Modifying 어노테이션 필요하다. 
 	@Transactional

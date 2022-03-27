@@ -9,10 +9,10 @@ import useStore from "../plugins/store";
 function Main() {
   const store = useStore();
   const member = useStore((state) => state.member);
-  console.log(useStore.getState().member);
-  console.log("getMemberInfo() =>", store.getMemberInfo());
-  console.log("getMemberRole() =>", store.getMemberRole());
-  console.log("useStore(state => state.member)", member);
+  // console.log(useStore.getState().member);
+  // console.log("getMemberInfo() =>", store.getMemberInfo());
+  // console.log("getMemberRole() =>", store.getMemberRole());
+  // console.log("useStore(state => state.member)", member);
 
   return (
     <div className={styles.mainContainer}>

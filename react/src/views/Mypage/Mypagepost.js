@@ -26,18 +26,18 @@ function Mypagepost() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  
-  console.log(location);
+
+  // console.log(location);
   const idx = location.pathname.indexOf("/", 1);
-  console.log(idx);
+  // console.log(idx);
   const boardGroup = location.pathname.slice(1, idx);
-  console.log(boardGroup);
+  // console.log(boardGroup);
 
   const idx2 = location.pathname.indexOf("/", idx + 1);
-  console.log(idx2);
+  // console.log(idx2);
 
   const boardName = location.pathname.slice(idx + 1, idx2);
-  console.log(boardName);
+  // console.log(boardName);
 
   const [postObject, setPostObject] = useState(null);
   const [comments, setComments] = useState(null);
@@ -55,15 +55,15 @@ function Mypagepost() {
     axios
       .get(`/mypage/reply/${nickname}`)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         const post = response.data;
-       
-        console.log(nickname)
+
+        // console.log(nickname)
 
         if (post.finduser === null) {
-          console.log("sorry")
+          // console.log("sorry")
         } else if (post.finduser !== null) {
-          console.log(post.finduser)
+          // console.log(post.finduser)
           post.finduser.map((like) => {
             if (like === nickname) {
 
@@ -74,7 +74,7 @@ function Mypagepost() {
         }
 
         post.finduser2.map((like2) => {
-          console.log(post.finduser2)
+          // console.log(post.finduser2)
           if (like2 === nickname) {
 
             setPostRecommendOrNot(true);
@@ -135,7 +135,7 @@ function Mypagepost() {
         },
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         window.location.reload();
       })
       .catch((error) => {
@@ -171,7 +171,7 @@ function Mypagepost() {
         },
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         window.location.reload();
       });
   };
@@ -189,7 +189,7 @@ function Mypagepost() {
       })
       .then((response) => {
 
-        console.log(response.data);
+        // console.log(response.data);
         alert("추천하셨습니다");
 
         window.location.reload();
@@ -204,7 +204,7 @@ function Mypagepost() {
     await axios
       .delete(`/${boardName}/recomm/${type}/${targetNo}/${nickname}`)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         alert("추천을 취소하셨습니다");
         window.location.reload();
       })

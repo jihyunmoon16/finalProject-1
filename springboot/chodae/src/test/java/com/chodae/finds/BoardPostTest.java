@@ -98,7 +98,7 @@ public class BoardPostTest {
 		
 		BoardGroup[] board = BoardGroup.values();
 		log.info(Arrays.toString(board));
-		log.info(""+BoardGroup.getBoardNameByNo(1).name());
+		log.info(""+BoardGroup.getBoardGroupByNo(1).name());
 	
 	}
 	

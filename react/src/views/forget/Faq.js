@@ -13,7 +13,7 @@ import useStore from "../../plugins/store";
 
 function Faq(props) {
   const store = useStore();
-
+  const member = useStore((state) => state.member);
   // console.log(useStore.getState().member);
 
   const navigate = useNavigate();
@@ -48,22 +48,22 @@ function Faq(props) {
     qWord = qWord === null ? "" : qWord;
     qOrder = qOrder === null ? "" : qOrder;
 
-    getFaq(page, qType, qWord, qOrder);
+    getPost(boardName, page, qType, qWord, qOrder);
 
     setPaginationNumber(parseInt(page));
   }, [props, page, qType, qWord, qOrder]);
 
   const changePage = ({ selected }) => {
-    getFaq(selected + 1, qType, qWord, qOrder);
+    getPost(boardName, selected + 1, qType, qWord, qOrder);
   };
 
   const addOrder = (e) => {
     // console.log(e.target.value);
-    getFaq(page, qType, qWord, e.target.value);
+    getPost(boardName, page, qType, qWord, e.target.value);
   };
 
   //리액트화면에서 검색결과 창에서 x버튼 누르면 타입과 검색처 초기화?
-  async function getFaq(page, searchType, keyword, order = "postRegdate") {
+  async function getPost(boardName, page, searchType, keyword, order = "postRegdate") {
     let url = `/${boardName}`;
 
     await axios
@@ -87,8 +87,6 @@ function Faq(props) {
         setPosts(postList);
         // console.log(postList);
         setPageCount(response.data.totalPages);
-
-        currentUrl = `/${boardGroup}/${boardName}?page=${page}&searchType=${searchType}&keyword=${keyword}&order=${order}`;
 
         navigate(
           `/${boardGroup}/${boardName}?page=${page}&searchType=${searchType}&keyword=${keyword}&order=${order}`
@@ -127,6 +125,9 @@ function Faq(props) {
     <div className={styles.boardContainer}>
       <h1 className={styles.heading}>{props.title}</h1>
       <div className={styles.orderButtons}>
+        <button value="postRegdate" onClick={addOrder}>
+          최신순
+        </button>
         <button value="postViews" onClick={addOrder}>
           조회순
         </button>
@@ -184,8 +185,8 @@ function Faq(props) {
       </div>
 
       <div>
-        <SearchBar getData={getData} />
-        {localStorage.getItem("username") && boardName !== "notice" ? (
+        <SearchBar getData={getData} getPost={getPost} />
+        {(member && boardName !== "notice") ? (
           <div className={styles.writePostBtnWrapper}>
             <button
               onClick={() => {

@@ -14,6 +14,7 @@ import CareerBoardTable from "../../component/CareerBoardTable";
 import useStore from "../../plugins/store";
 function Study(props) {
     const store = useStore();
+    const isLogin = useStore((state) => state.isLogin);
     const nickname =
         useStore.getState().member !== null
             ? useStore.getState().member.nickname
@@ -29,9 +30,9 @@ function Study(props) {
     const navigate = useNavigate();
     const location = useLocation();
 
-    console.log(location);
+    // console.log(location);
     const idx = location.pathname.indexOf("/", 1);
-    console.log(idx);
+    // console.log(idx);
     const boardGroup = location.pathname.slice(1, idx);
     const boardName = location.pathname.slice(idx + 1);
 
@@ -39,6 +40,7 @@ function Study(props) {
     let page = searchParams.get("page");
     let qType = searchParams.get("searchType");
     let qWord = searchParams.get("keyword");
+    let qOrder = searchParams.get("order");
 
     const [postInfo, setPostInfo] = useState({});
     const [posts, setPosts] = useState([]);
@@ -54,27 +56,27 @@ function Study(props) {
         page = page === null ? 1 : page;
         qType = qType === null ? "" : qType;
         qWord = qWord === null ? "" : qWord;
+        qOrder = qOrder === null ? "" : qOrder;
 
-        getStudy(page, qType, qWord);
+        getStudy(boardName, page, qType, qWord, qOrder);
 
         setPaginationNumber(parseInt(page));
-    }, [page, qType, qWord]); //뒤로 가기시 페이지번호나 검색종류,검색어가 바뀌면 쿼리스트링으로 재검색)
-    //게시판 하단 페이지네이션과 연동이 안되고 있는 상황임. 아직 방법을 모르겠다.
+    }, [page, qType, qWord, qOrder]);
 
     const changePage = ({ selected }) => {
-        getStudy(selected + 1, qType, qWord);
+        getStudy(boardName, selected + 1, qType, qWord, qOrder);
     };
 
     //리액트화면에서 검색결과 창에서 x버튼 누르면 타입과 검색처 초기화?
-    async function getStudy(page, searchType, keyword) {
+    async function getStudy(boardName, page, searchType, keyword, order = "postRegdate") {
         let url = `/${boardName}`;
 
         await axios
             .get(url, {
-                params: { page: page, searchType: searchType, keyword: keyword },
+                params: { page: page, searchType: searchType, keyword: keyword, order: order },
             })
             .then((response) => {
-                console.log(response.data)
+                // console.log(response.data)
                 const postList = response.data.content;
                 // const postCate = response.data.content[2];
                 // const postCate2 = postCate.category;
@@ -94,7 +96,7 @@ function Study(props) {
                 setPageCount(response.data.totalPages);
 
                 navigate(
-                    `/${boardGroup}/${boardName}?page=${page}&searchType=${searchType}&keyword=${keyword}`
+                    `/${boardGroup}/${boardName}?page=${page}&searchType=${searchType}&keyword=${keyword}&order=${order}`
                 );
             })
             .catch((error) => {
@@ -119,7 +121,6 @@ function Study(props) {
     }
 
     const getData = (posts, pageCount, searchType, keyword) => {
-        console.log(posts, pageCount, searchType, keyword);
         setPosts(posts);
         setPageCount(pageCount);
         setSearchType(searchType);
@@ -191,8 +192,10 @@ function Study(props) {
             </div>
 
             <div>
-                <SearchBar getData={getData} />
-                {nickname ? (
+
+                <SearchBar getData={getData} getPost={getStudy} />
+                {isLogin ? (
+
                     <div className={styles.writePostBtnWrapper}>
                         <button
                             onClick={() => {

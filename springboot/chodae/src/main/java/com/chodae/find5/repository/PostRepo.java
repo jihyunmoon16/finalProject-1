@@ -87,5 +87,12 @@ public interface PostRepo  extends JpaRepository<Post, Long>{
 	@Query("SELECT r FROM Reply r WHERE r.id = ?1")
 	Page<Reply> getMyReplyById(Long id, Pageable paging);
 	
+	// 통합검색 전체게시판(7번 리뷰메인게시판의 게시글은 검색에서 제외)
+	@Query("SELECT p FROM Post p WHERE p.board.boardNo <> 7  and (p.postTitle Like %?1% OR p.postContent.content Like %?1% ) ")
+	Page<Post> getUniSearchPostLikeTitleOrContent(String keyword, Pageable paging);
 	
+//	// 통합검색  조건: 게시판별 (7번 리뷰메인게시판의 게시글은 검색에서 제외)
+//	@Query("SELECT p FROM Post p WHERE p.board.boardNo <> 7 and p.board.boardNo = ?1 and (p.postTitle Like %?2% OR p.postContent.content Like %?2% ) ")
+//	Page<Post> getUniSearchPostLikeTitleOrContentByboard(int boardNo, String keyword, Pageable paging);
+//	
 }

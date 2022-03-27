@@ -121,24 +121,27 @@ public class UserFindServiceImpl implements UserFindService {
 	@Override
 	public String searchId(String name, String email) {
 		log.info(name+"~~~"+email);
-		List<User> list = userRepo.findUserByNameAndEmail(name, email);
+		Optional<User> result = userRepo.findUserByNameAndEmail(name, email);
 		
-		User user = new User();
-		
-		if(!list.isEmpty()) {
-			user = list.get(0);
-			log.info(user.getLoginId());
+		if(result.isPresent()) {
+			User user = result.get();
 			return user.getLoginId();
 		}
+		
 		return null;
 	}
 
 
 	@Override
-	public List<User> isUser(String loginId, String email) {
+	public String isUser(String loginId, String email) {
 		log.info(loginId+"~~~"+email);
-		List<User> list = userRepo.findUserByLoginIdAndEmail(loginId, email);
-		return list;
+		Optional<User> result = userRepo.findUserByLoginIdAndEmail(loginId, email);
+		
+		if(result.isPresent()) {
+			return result.get().getLoginId();
+		}
+		
+		return null;
 	}
 
 	//업데이트 

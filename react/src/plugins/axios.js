@@ -13,7 +13,7 @@ let refreshToken = (localStorage.hasOwnProperty("refreshToken")) ? localStorage.
 // axios 인스턴스를 생성, 설정 정보 저장
 const instance = axios.create({
     baseURL, //기본  루트 url
-    timeout: 15000,
+    timeout: 20000,
     // withCredentials: true
 });
 
@@ -24,26 +24,26 @@ instance.interceptors.request.use(
         accessToken = (localStorage.hasOwnProperty("accessToken")) ? localStorage.getItem("accessToken") : null;
 
         if (accessToken == null) {
-            console.log("토큰없음");
+            // console.log("토큰없음");
             return config;
         }
 
         const info = jwt_decode(accessToken);
-        console.log(info);
+        // console.log(info);
 
         const currentTime = Math.floor(new Date().getTime() / 1000.0);
         const expTime = info.exp;
         const isExpired = expTime - currentTime <= 0;  //만료됨.
-        console.log(isExpired);
-        console.log(expTime - currentTime);
-        console.log(currentTime);
-        console.log(expTime);
+        // console.log(isExpired);
+        // console.log(expTime - currentTime);
+        // console.log(currentTime);
+        // console.log(expTime);
 
 
         const nickname = info.member.nickname;
 
         if (!isExpired) {
-            console.log("아직 만료안됨");
+            // console.log("아직 만료안됨");
             if (localStorage.hasOwnProperty("accessToken")) {
 
                 config.headers.Authorization = `Bearer ${accessToken}`;
@@ -51,7 +51,7 @@ instance.interceptors.request.use(
             return config;
 
         } else {
-            console.log('accessToken 만료됨');
+            // console.log('accessToken 만료됨');
             //토큰 만료시 리프레시 토큰을 전달하여로그인시 발급한 리프레쉬토큰(DB에 저장)과 비교하여 일치하면 액세스토큰 발급
             //새로 발급 받은 액세스 토큰을 헤더로 설정후 요청.
 
@@ -70,7 +70,7 @@ instance.interceptors.request.use(
                 return config;
 
             } catch (err) {
-                console.log(err);
+                // console.log(err);
             }
 
 
@@ -95,7 +95,7 @@ instance.interceptors.response.use(
         return response;
     },
     async function (error) {
-        console.log(error);
+        // console.log(error);
         return Promise.reject(error);
     }
 );

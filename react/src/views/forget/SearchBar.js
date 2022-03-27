@@ -4,7 +4,7 @@ import React from "react";
 import styles from "./SearchBar.module.css";
 import axios from "../../plugins/axios";
 
-function SearchBar({ getData }) {
+function SearchBar({ getData, getPost }) {
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -18,36 +18,44 @@ function SearchBar({ getData }) {
   const [searchBy, setSearchBy] = useState("titleOrContent"); //초기값은 드롭박스 처음 값으로 설정.
   const [searchTerm, setSearchTerm] = useState("");
 
-  const onClick = () => {
-    // console.log("자식컴포넌트 ", searchBy, searchTerm);
-
-    searchList(searchBy, searchTerm);
+  const keyUpSearch = (e) => {
+    // console.log(e.key);
+    if (e.key === 'Enter') {
+      goKeyWordSearch();
+    }
   };
 
-  const searchList = async function (searchBy, searchTerm) {
-    let url = `/${boardName}`;
+  const goKeyWordSearch = () => {
 
-    await axios
-      .get(url, {
-        params: { page: 1, searchType: searchBy, keyword: searchTerm },
-      })
-      .then((response) => {
-        // console.log("검색결과 1페이지(기본) 결과 검색");
-        getData(
-          response.data.content,
-          response.data.totalPages,
-          searchBy,
-          searchTerm
-        );
-
-        navigate(
-          `/${boardGroup}/${boardName}?page=${1}&searchType=${searchBy}&keyword=${searchTerm}`
-        );
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    getPost(boardName, 1, searchBy, searchTerm, "postRegdate");
+    // searchList(searchBy, searchTerm);
   };
+
+  // const searchList = async function (searchBy, searchTerm) {
+  //   let url = `/${boardName}`;
+
+  //   await axios
+  //     .get(url, {
+  //       params: { page: 1, searchType: searchBy, keyword: searchTerm },
+  //     })
+  //     .then((response) => {
+  //       // console.log("검색결과 1페이지(기본) 결과 검색");
+  //       getData(
+  //         response.data.content,
+  //         response.data.totalPages,
+  //         searchBy,
+  //         searchTerm
+  //       );
+
+  //       navigate(
+  //         `/${boardGroup}/${boardName}?page=${1}&searchType=${searchBy}&keyword=${searchTerm}`
+  //       );
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // };
+
 
   return (
     <div className={styles.searchBarContainer}>
@@ -69,8 +77,9 @@ function SearchBar({ getData }) {
         onChange={(event) => {
           setSearchTerm(event.target.value);
         }}
+        onKeyUp={keyUpSearch}
       ></input>
-      <button className={styles.searchBarInputBtn} onClick={onClick}>
+      <button className={styles.searchBarInputBtn} onClick={goKeyWordSearch}>
         검색
       </button>
     </div>

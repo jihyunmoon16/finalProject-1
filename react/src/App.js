@@ -71,9 +71,11 @@ import JobFair from "./views/event/Event"; //이벤트
 import TestMainPage from "./views/quiz/TestMainPage";
 
 //----------------------------------------------------------------------------
+import UnifiedSearch from "./views/unifiedSearch/UnifiedSearch";
 
 function App() {
   let [shoes, shoes1] = useState(data);
+
 
   const REST_API_KEY = "e9fdc52e3d35e33eb4ba5a732d2942ed";
   const REDIRECT_URI = "http://localhost:3000/oauth/kakao/callback";
@@ -94,12 +96,14 @@ function App() {
         <Route path="/oauth/kakao/callback" exact element={<Auth />}></Route>
         <Route path="/profile" exact element={<Profile />}></Route>
 
+        {/* 전체검색페이지 기본 모든 게시판 검색/ 검색결과 페이지에서 게시판 선택 가능*/}
+        <Route path="/unified/:boardname" element={<UnifiedSearch />} />
 
         {/* mypage 메인화면*/}
         <Route path="/api/users" element={<UserListComponent/>}/> 
         <Route path="/api/users/1" element={<EditUserComponent/>}/> 
         <Route path="/api/users/2" element={<AddUserComponent/>}/> 
-        
+
 
         {/* 아이디찾기 메인화면 */}
         <Route path="/find" element={<Find />}>
@@ -141,6 +145,7 @@ function App() {
           <Route path="notice/create" element={<CreatePost />} />
           <Route path="notice/:postno/update" element={<UpdatePost />} />
 
+
           {/*Faq 메인화면 */}
           <Route path="/customer/FAQ" element={<FAQ />} />
         </Route>
@@ -164,8 +169,17 @@ function App() {
         <Route path="/jobfair" element={<JobFair />} />
         <Route path="/testmainpage" element={<TestMainPage />} />
 
+        {/* 마이페이지 */}
+        <Route path="/mypage" element={<Mypage title="마이페이지" />}>
+          <Route path="/mypage/Mypagepost" element={<MypageBoard title="마이페이지" />}></Route>
+          <Route path="/mypage/:postno" element={<Mypagepost />} />
+
+          <Route path="/mypage/MypageComment" element={<MypageComment />} />
+          <Route path="/mypage/:postno/update" element={<UpdatePost />} />
+        </Route>
         {/* 404 페이지 */}
         <Route path="*" element={<NotFound />} />
+
         {/* 마이페이지 */}
         <Route path="/mypage" element={<Mypage title="마이페이지" />}>
 
@@ -178,6 +192,7 @@ function App() {
           <Route path="/mypage/MypageComment" element={<MypageComment />} />
           <Route path="/mypage/:postno/update" element={<UpdatePost />} />
         </Route>
+
       </Routes>
 
       <Footer />

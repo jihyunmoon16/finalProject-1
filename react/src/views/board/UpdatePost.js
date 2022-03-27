@@ -21,10 +21,10 @@ function UpdatePost() {
   const [interestCate, setInterestCate] = useState("");
   const [levelCate, setLevelCate] = useState("");
 
-  console.log(boardName);
-  console.log(title);
-  console.log(content);
-  console.log(nickname);
+  // console.log(boardName);
+  // console.log(title);
+  // console.log(content);
+  // console.log(nickname);
   //글 수정시 글 수정페이지로 넘어오면서 기존 글 정보로 initialValues를 초기화 해줘야되나?
   let initialValues = {
     boardName: boardName,
@@ -46,10 +46,10 @@ function UpdatePost() {
     const boardGroup = location.pathname.slice(1, idx);
     const boardName = location.pathname.slice(idx + 1, idx2);
     const postNum = location.pathname.slice(idx2 + 1, idx3);
-    console.log(idx);
-    console.log(idx2);
-    console.log(boardGroup);
-    console.log(boardName);
+    // console.log(idx);
+    // console.log(idx2);
+    // console.log(boardGroup);
+    // console.log(boardName);
 
     getPost(boardName, postNum);
   }, []);
@@ -65,7 +65,7 @@ function UpdatePost() {
           reply.replyRegdate = dateFormat(new Date(reply.replyRegdate));
         }
 
-        console.log(post);
+        // console.log(post);
         setBoardName(boardName);
         setTitle(post.postTitle);
         setContet(post.postContent.content);
@@ -130,7 +130,7 @@ function UpdatePost() {
         },
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         navigate(-2);
       })
       .catch((error) => {
