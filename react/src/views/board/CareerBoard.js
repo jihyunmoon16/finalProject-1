@@ -137,7 +137,7 @@ function CareerBoard() {
 
   const getData = (posts, pageCount, searchType, keyword) => {
     //검색버튼 누르면 검색결과 1페이지 리스트랑 페이지정보 넘어옴.
-    console.log(posts, pageCount, searchType, keyword);
+    // console.log(posts, pageCount, searchType, keyword);
     setPosts(posts);
     setPageCount(pageCount);
     setSearchType(searchType);

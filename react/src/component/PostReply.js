@@ -85,7 +85,7 @@ function PostReply({ reply }) {
         },
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         alert("추천하셨습니다");
       })
       .catch((error) => {

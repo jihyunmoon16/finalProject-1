@@ -67,6 +67,9 @@ public interface BoardService {
 	//내가 쓴 댓글
 	Page<Reply> findMyReply(String nickname, String searchType, String keyword, Pageable pageable);
 	
+	//전체 통합검색
+	Page<Post> getUnifiedSearch(String boardName, String searchType, String keyword, Pageable pageable);
+	
 	default PostDTO entityToDto(Post entity) {
 		PostDTO dto = PostDTO.builder()
 				.postNo(entity.getPostNo())
@@ -123,6 +126,7 @@ public interface BoardService {
 	User decline(String nickname, Long postNo);
 
 	Page<User> application(long postNo);
+
 	
 
 	

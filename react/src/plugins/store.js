@@ -10,7 +10,20 @@ const useStore = create(persist(
         member: null,
         isLogin: false,
         url: "http://localhost:8000",
-
+        serachWord: null,
+        getSearchWord: () => {
+            if (get().serachWord !== null) {
+                return get().serachWord;
+            }
+        },
+        setSearchWord: (word) => {
+            const replaced = word.replace(/(\s*)/g, "");
+            if (replaced.length < 1) {
+                // console.log("검색어 없음");
+                return;
+            }
+            set({ serachWord: word });
+        },
         continueLogin: async (accessToken, refreshToken) => {
 
             const dt = jwt_decode(accessToken);
@@ -40,7 +53,7 @@ const useStore = create(persist(
         },
         setMemberInfo: (member) => {
             set({ member: member, isLogin: true });
-            console.log("after login => member:", get().member, get().member.nickname);
+            // console.log("after login => member:", get().member, get().member.nickname);
         },
         getMemberInfo: () => {
             if (get().member !== null) {
@@ -58,7 +71,7 @@ const useStore = create(persist(
                 member: null,
                 isLogin: false,
             });
-            console.log("after logout => member:", get().member);
+            // console.log("after logout => member:", get().member);
         },
     }),
     {

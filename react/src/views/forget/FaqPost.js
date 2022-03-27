@@ -52,11 +52,11 @@ function FaqPost() {
     axios
       .get(`/${boardName}/${postNo}`)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         const post = response.data;
 
         post.finduser2.map((like2) => {
-          console.log(post.finduser2);
+          // console.log(post.finduser2);
           if (like2 === nickname) {
             setPostRecommendOrNot(true);
           }
@@ -131,7 +131,7 @@ function FaqPost() {
         },
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         alert("추천하셨습니다");
       })
       .catch((error) => {

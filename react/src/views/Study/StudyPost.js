@@ -28,17 +28,17 @@ function StudyPost() {
     const navigate = useNavigate();
 
 
-    console.log(location);
+    // console.log(location);
     const idx = location.pathname.indexOf("/", 1);
-    console.log(idx);
+    // console.log(idx);
     const boardGroup = location.pathname.slice(1, idx);
-    console.log(boardGroup);
+    // console.log(boardGroup);
 
     const idx2 = location.pathname.indexOf("/", idx + 1);
-    console.log(idx2);
+    // console.log(idx2);
 
     const boardName = location.pathname.slice(idx + 1, idx2);
-    console.log(boardName);
+    // console.log(boardName);
 
     const [postObject, setPostObject] = useState(null);
     const [comments, setComments] = useState(null);
@@ -56,15 +56,15 @@ function StudyPost() {
         axios
             .get(`/${boardName}/${postNo}`)
             .then((response) => {
-                console.log(response.data);
+                // console.log(response.data);
 
                 const post = response.data;
 
 
                 if (post.finduser === null) {
-                    console.log("sorry")
+                    // console.log("sorry")
                 } else if (post.finduser !== null) {
-                    console.log(post.finduser)
+                    // console.log(post.finduser)
                     post.finduser.map((like) => {
                         if (like === nickname) {
 
@@ -75,7 +75,7 @@ function StudyPost() {
                 }
 
                 post.finduser2.map((like2) => {
-                    console.log(post.finduser2)
+                    // console.log(post.finduser2)
                     if (like2 === nickname) {
 
                         setPostRecommendOrNot(true);
@@ -134,7 +134,7 @@ function StudyPost() {
                 },
             })
             .then((response) => {
-                console.log(response.data);
+                // console.log(response.data);
                 window.location.reload();
             })
             .catch((error) => {
@@ -169,7 +169,7 @@ function StudyPost() {
                 },
             })
             .then((response) => {
-                console.log(response.data);
+                // console.log(response.data);
                 window.location.reload();
             });
     };
@@ -188,7 +188,7 @@ function StudyPost() {
                 },
             })
             .then((response) => {
-                console.log(response.data);
+                // console.log(response.data);
             })
             .catch((error) => {
                 console.log(error);
@@ -199,7 +199,7 @@ function StudyPost() {
         await axios
             .delete(`/${boardName}/recomm/${type}/${targetNo}/${nickname}`)
             .then((response) => {
-                console.log(response.data);
+                // console.log(response.data);
             })
             .catch((error) => {
                 console.log(error);
@@ -210,7 +210,7 @@ function StudyPost() {
         const formData = new FormData();
         formData.append("nickname", nickname);
         axios.post(`/${boardName}/${targetNo}`, formData).then((response) => {
-            console.log(response.data)
+            // console.log(response.data)
         })
 
     }

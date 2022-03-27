@@ -59,6 +59,7 @@ public class User {
 	private String name;
 	
 	@NotNull
+	@Column(length = 45)
 	private String email;
 	
 	@Column(columnDefinition = "integer default 1")

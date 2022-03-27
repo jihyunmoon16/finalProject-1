@@ -53,16 +53,19 @@ function ForgetId() {
       return;
     }
     //길이 체크
-    if (replaceValue.length < 1 || 15 < replaceValue.length) {
+    // console.log(replaceValue.length < 1 || 45 < replaceValue.length);
+    // console.log(replaceValue.length);
+    if (replaceValue.length < 1 || 45 < replaceValue.length) {
       setEmailMsg("이메일을 다시 확인해주세요");
       return;
     }
 
     //형식 체크
-    const emailPattern =
-      /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
-    // console.log(namePattern.test(replaceValue));
-    if (emailPattern.test(replaceValue)) {
+    const emailPattern = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+
+    console.log(replaceValue.match(emailPattern));
+
+    if (replaceValue.match(emailPattern)) {
       setIsValidEmail(true);
       setEmailMsg("");
     } else {
@@ -83,7 +86,9 @@ function ForgetId() {
       .then((response) => {
         // console.log(response.data);
         //성공시 아이디 결과화면 페이지로 이동
-        navigate(`/find/id/result/${response.data}`);
+        if (response.data !== null) {
+          navigate(`/find/id/result/${response.data}`);
+        }
       })
       .catch((error) => {
         console.log(error);
@@ -112,7 +117,7 @@ function ForgetId() {
                 onChange={onChangeName}
                 placeholder="성함을 입력해주세요"
               />
-              {!isValidName && <div className="errorMessage">{nameMsg}</div>}
+              {!isValidName && <div className={styles.errorMessage}>{nameMsg}</div>}
             </div>
             <div className={styles.emailInput}>
               <input
@@ -121,7 +126,7 @@ function ForgetId() {
                 onChange={onChangeEmail}
                 placeholder="이메일을 입력해주세요"
               />
-              {!isValidEmail && <div className="errorMessage">{emailMsg}</div>}
+              {!isValidEmail && <div className={styles.errorMessage}>{emailMsg}</div>}
             </div>
             <div>
               <button

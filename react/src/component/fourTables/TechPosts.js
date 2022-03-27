@@ -12,7 +12,7 @@ function CareerPosts() {
         `https://newsapi.org/v2/top-headlines?country=kr&category=technology&apiKey=f8e9dfcd44e64c4d965a292e3fb608df`
       )
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         setNewsData(response.data.articles);
       });
   }, []);

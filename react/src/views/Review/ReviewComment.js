@@ -11,9 +11,9 @@ import styles from "./ReviewComment.module.css";
 function ReviewComment(id) {
   const idindex = id;
   const nickname =
-  useStore.getState().member !== null
-    ? useStore.getState().member.nickname
-    : null;
+    useStore.getState().member !== null
+      ? useStore.getState().member.nickname
+      : null;
 
 
   const [postObject, setPostObject] = useState(null);
@@ -30,7 +30,7 @@ function ReviewComment(id) {
     axios
       .get(`/review/index/${idindex}`)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
 
         const post = response.data;
         post.postRegdate = dateFormat(new Date(post.postRegdate));
@@ -79,7 +79,7 @@ function ReviewComment(id) {
         },
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         window.location.reload();
       })
       .catch((error) => {
@@ -88,7 +88,7 @@ function ReviewComment(id) {
   };
   //댓글 삭제
   const deleteReply = async function (postNo, replyNo) {
-    console.log(replyNo, idindex);
+    // console.log(replyNo, idindex);
     await axios({
       method: "DELETE",
       url: `/review/post/${postNo}/reply/${replyNo}/${nickname}`,
@@ -108,7 +108,7 @@ function ReviewComment(id) {
     formData.append("index", idindex);
     formData.append("nickname", nickname);
     formData.append("content", content);
-    console.log(replyNo, idindex);
+    // console.log(replyNo, idindex);
     await axios
       .put(`/review/index/${idindex}/reply/${replyNo}`, formData, {
         headers: {
@@ -116,11 +116,11 @@ function ReviewComment(id) {
         },
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         window.location.reload();
       });
   };
-  
+
   return (
     <div className={styles.postContainer1}>
       {postObject && (

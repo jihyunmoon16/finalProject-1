@@ -27,13 +27,16 @@ const Registercopy = () => {
             params: { nickname: nickname },
           })
           .then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
             if (!res.data) {
-              console.log("같은 닉네임 없어");
-              console.log(res.data);
+              // console.log("같은 닉네임 없어");
+              // console.log(res.data);
               return true;
-            } else console.log("같은 닉네임 있어");
-            return false;
+
+            } else {
+              // console.log("같은 닉네임 있어");
+              return false;
+            }
           })
           .catch((error) => {
             console.log(error.res);
@@ -54,12 +57,14 @@ const Registercopy = () => {
             params: { email: email },
           })
           .then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
             if (!res.data) {
-              console.log("같은 아이디 없어");
+              // console.log("같은 아이디 없어");
               return true;
-            } else console.log("같은 아이디 있어");
-            return false;
+            } else {
+              // console.log("같은 아이디 있어");
+              return false;
+            }
           })
           .catch((error) => {
             console.log(error.res);
@@ -89,15 +94,15 @@ const Registercopy = () => {
             params: { loginId: loginId },
           })
           .then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
             if (!res.data) {
-              console.log("같은 아이디 없어");
+              // console.log("같은 아이디 없어");
               return true;
             } else console.log("같은 아이디 있어");
             return false;
           })
           .catch((error) => {
-            console.log(error.res);
+            // console.log(error.res);
             Promise.reject(error); //에러 무시인데 400에러만 무시할수있도록? 수정? axios 안에서
             //일어난 일이니 상관 없을수도?
           });
@@ -136,8 +141,8 @@ const Registercopy = () => {
           phone,
           mailAds,
         } = values;
-        console.log(values);
-        console.log(values.password);
+        // console.log(values);
+        // console.log(values.password);
         axios
           .post(
             "/reg",
@@ -159,15 +164,15 @@ const Registercopy = () => {
             }
           )
           .then(function (response) {
-            console.log(response);
-            console.log("넘어감");
+            // console.log(response);
+            // console.log("넘어감");
 
             navigate("/");
 
             navigate("/");
           })
           .catch(function (error) {
-            console.log(error.response);
+            // console.log(error.response);
           });
       }}
     // formik.setFieldTouched('email')
@@ -180,7 +185,7 @@ const Registercopy = () => {
             )
           );
         };
-        console.log("Formik props", formik);
+        // console.log("Formik props", formik);
         return (
           <div>
             <Form>

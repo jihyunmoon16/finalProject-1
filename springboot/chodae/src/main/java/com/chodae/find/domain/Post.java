@@ -44,6 +44,9 @@ public class Post {
 	@JoinColumn(name = "board_no")
 	private Board board;//게시판 번호(외래키)
 	
+	@Transient
+	private String korBoardName;
+	
 	
 	@OneToOne(cascade = CascadeType.ALL ) //케스케이드 옵션을 설정하지 않으면 오류가 발생한다. 1대1 관계는 페치타입 기본 eager lazy하니까 오류가 난다.
 	@JoinColumn(name = "content_no")

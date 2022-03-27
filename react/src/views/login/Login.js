@@ -34,7 +34,7 @@ function Login() {
     await axios
       .post("/api/login", formData)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         const accessToken = response.data.accessToken;
         const refreshToken = response.data.refreshToken;
         const dt = jwt_decode(accessToken);
@@ -43,18 +43,16 @@ function Login() {
 
         localStorage.setItem("accessToken", accessToken);
         localStorage.setItem("refreshToken", refreshToken);
-
-        localStorage.setItem("username", useStore.getState().member.nickname); //임시
-
-        console.log(
-          "useStore.getState().member.nickname",
-          useStore.getState().member.nickname
-        );
-        console.log("useStore.getState().member", useStore.getState().member);
-        console.log(dt);
-        console.log(dt.member);
-
         navigate(-1);
+
+        // console.log(
+        //   "useStore.getState().member.nickname",
+        //   useStore.getState().member.nickname
+        // );
+        // console.log("useStore.getState().member", useStore.getState().member);
+        // console.log(dt);
+        // console.log(dt.member);
+
       })
       .catch((error) => {
         console.log(error);
@@ -108,7 +106,7 @@ function Login() {
 
 
 
-        // token이 필요한 API 요청 시 header Authorization에 token 담아서 보내기
+  // token이 필요한 API 요청 시 header Authorization에 token 담아서 보내기
   //       axios.defaults.headers.common['Authorization'] = `Bearer ${response.data}`;
   //       console.log(localStorage.getItem("hi"))
   //     }).catch((error) => {
@@ -145,10 +143,10 @@ function Login() {
         <button className={styles.loginBtn}>ID/PW 찾기</button>
       </Link>
       <h1><a href={KAKAO_AUTH_URL}>Kakao Login</a></h1>
-        {/* { <button onClick={{KAKAO_AUTH_URL}}>
+      {/* { <button onClick={{KAKAO_AUTH_URL}}>
         <img src={kakao} alt="kakao_button" />
       </button>}   */}
-      </div>
+    </div>
   );
 }
 export default Login;

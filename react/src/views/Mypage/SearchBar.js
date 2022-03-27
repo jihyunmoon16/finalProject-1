@@ -8,18 +8,18 @@ function SearchBar({ getData }) {
   const navigate = useNavigate();
   const location = useLocation();
 
-  console.log(location);
+  // console.log(location);
   const idx = location.pathname.indexOf("/", 1);
-  console.log(idx);
+  // console.log(idx);
   const boardGroup = location.pathname.slice(1, idx);
   const boardName = location.pathname.slice(idx + 1);
-  console.log(boardName);
+  // console.log(boardName);
 
   const [searchBy, setSearchBy] = useState("titleOrContent"); //초기값은 드롭박스 처음 값으로 설정.
   const [searchTerm, setSearchTerm] = useState("");
 
   const onClick = () => {
-    console.log("자식컴포넌트 ", searchBy, searchTerm);
+    // console.log("자식컴포넌트 ", searchBy, searchTerm);
 
     searchList(searchBy, searchTerm);
   };
@@ -32,7 +32,7 @@ function SearchBar({ getData }) {
         params: { page: 1, searchType: searchBy, keyword: searchTerm },
       })
       .then((response) => {
-        console.log("검색결과 1페이지(기본) 결과 검색");
+        // console.log("검색결과 1페이지(기본) 결과 검색");
         getData(
           response.data.content,
           response.data.totalPages,

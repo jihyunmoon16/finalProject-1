@@ -78,7 +78,7 @@ function CreatePostCust() {
                 },
             })
             .then((response) => {
-                console.log(response.data);
+                // console.log(response.data);
                 navigate("/together/study");
             })
             .catch((error) => {

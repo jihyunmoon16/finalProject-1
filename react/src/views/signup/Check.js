@@ -26,7 +26,7 @@ const Check = () => {
       }}
       validationSchema={validate}
       onSubmit={(values) => {
-        console.log(values);
+        // console.log(values);
         if (values.checked1 === true && values.checked2 === true) {
           navigate("/register");
         }

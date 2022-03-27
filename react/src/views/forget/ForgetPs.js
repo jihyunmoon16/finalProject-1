@@ -54,7 +54,7 @@ function ForgetPs() {
       return;
     }
     //길이 체크
-    if (replaceValue.length < 1 || 15 < replaceValue.length) {
+    if (replaceValue.length < 1 || 45 < replaceValue.length) {
       setEmailMsg("이메일을 다시 확인해주세요");
       return;
     }
@@ -84,9 +84,9 @@ function ForgetPs() {
       .then((response) => {
         const data = response.data;
         // console.log(response.data);
-        if (data.length === 1) {
-          console.log("비밀번호존재 비밀번호 재설정 페이지로 이동");
-          navigate(`/find/ps/reset/${data[0].loginId}`);
+        if (data.length !== null) {
+          // console.log("비밀번호존재 비밀번호 재설정 페이지로 이동");
+          navigate(`/find/ps/reset/${response.data}`);
         }
       })
       .catch((error) => {

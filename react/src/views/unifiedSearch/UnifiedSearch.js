@@ -5,30 +5,29 @@ import {
   useNavigate,
   useLocation,
   useSearchParams,
+  useParams,
 } from "react-router-dom";
 import axios from "../../plugins/axios";
-import styles from "./MypageBoard.module.css";
-
+import styles from "../unifiedSearch/UnifiedSearch.module.css";
 import useStore from "../../plugins/store";
+import BoardOption from "./BoardOption";
 
-function MypageBoard(props) {
-
+function UnifiedSearch() {
   const store = useStore();
-  const nickname =
-    useStore.getState().member !== null
-      ? useStore.getState().member.nickname
-      : null;
-  // console.log(useStore.getState().member);
+  const searchWord = store.getSearchWord();
+  const member = useStore((state) => state.member);
 
   const navigate = useNavigate();
   const location = useLocation();
 
+  // const params = useParams();
+  // const boardNameUrl = params.boardname;
+  // console.log("boardNameUrl", boardNameUrl);
   const idx = location.pathname.indexOf("/", 1);
   // console.log(idx);
   const boardGroup = location.pathname.slice(1, idx);
   const boardName = location.pathname.slice(idx + 1);
 
-  let currentUrl = "";
 
   const [searchParams, setSearchParams] = useSearchParams();
   let page = searchParams.get("page");
@@ -40,35 +39,38 @@ function MypageBoard(props) {
   const [posts, setPosts] = useState([]);
   const [pageCount, setPageCount] = useState(0);
 
-  const [searchType, setSearchType] = useState("");
-  const [keyword, setKeyword] = useState("");
+  // const [searchType, setSearchType] = useState("");
+  // const [keyword, setKeyword] = useState("");
 
   const [paginationNumber, setPaginationNumber] = useState(0);
 
   useEffect(() => {
     page = page === null ? 1 : page;
-    qType = qType === null ? "" : qType;
-    qWord = qWord === null ? "" : qWord;
+    qType = qType === null ? "titleOrContent" : qType;
+    qWord = qWord === null ? searchWord : qWord;
     qOrder = qOrder === null ? "" : qOrder;
 
-    getFaq(page, qType, qWord, qOrder);
+    getUnifiedPost(boardName, page, qType, qWord, qOrder);
 
     setPaginationNumber(parseInt(page));
-  }, [props, page, qType, qWord, qOrder]);
+  }, [page, qType, qWord, qOrder]);
 
   const changePage = ({ selected }) => {
-    getFaq(selected + 1, qType, qWord, qOrder);
+    getUnifiedPost(boardName, selected + 1, qType, qWord, qOrder);
   };
 
   const addOrder = (e) => {
     // console.log(e.target.value);
-    getFaq(page, qType, qWord, e.target.value);
+    getUnifiedPost(boardName, page, qType, qWord, e.target.value);
+  };
+  const changeBoard = () => {
+    navigate(`/unified/${boardName}?page=${1}&searchType=${qType}&keyword=${qWord}&order=${qOrder}`)
   };
 
   //리액트화면에서 검색결과 창에서 x버튼 누르면 타입과 검색처 초기화?
-  async function getFaq(page, searchType, keyword, order = "postRegdate") {
-    let url = `/mypage/post/${nickname}`;
-
+  async function getUnifiedPost(boardName, page, searchType, keyword, order = "postRegdate") {
+    let url = `/unified/${boardName}`;
+    // console.log(boardName);
     await axios
       .get(url, {
         params: {
@@ -85,6 +87,7 @@ function MypageBoard(props) {
           const date = new Date(post.postRegdate);
           post.postRegdate = dateFormat(date);
 
+
           if (post.board.boardName === "study") {
             post.Grouping = "together"
           } else if (post.board.boardName === "career") {
@@ -93,33 +96,23 @@ function MypageBoard(props) {
             post.Grouping = "mainboard"
           } else if (post.board.boardName === "worry") {
             post.Grouping = "mainboard"
+          } else if (post.board.boardName === "notice") {
+            post.Grouping = "customer"
+          } else if (post.board.boardName === "faq") {
+            post.Grouping = "customer"
           }
 
 
-          if (post.board.boardName == "review") {
-            post.boardkoreanname1 = "리뷰게시판"
-          } else if (post.board.boardName == "career") {
-            post.boardkoreanname1 = "취업준비게시판"
-          } else if (post.board.boardName == "book") {
-            post.boardkoreanname1 = "리뷰게시판"
-          } else if (post.board.boardName == "worry") {
-            post.boardkoreanname1 = "고민상담게시판"
-          } else if (post.board.boardName == "study") {
-            post.boardkoreanname1 = "스터디모집게시판"
-          }
 
         }
-
         //업데이트
         setPostInfo(response.data);
         setPosts(postList);
-        console.log(postList);
+        // console.log(postList);
         setPageCount(response.data.totalPages);
 
-        currentUrl = `/${boardGroup}/${boardName}?page=${page}&searchType=${searchType}&keyword=${keyword}&order=${order}`;
-
         navigate(
-          `/${boardGroup}/${boardName}?page=${page}&searchType=${searchType}&keyword=${keyword}&order=${order}`
+          `/unified/${boardName}?page=${page}&searchType=${searchType}&keyword=${keyword}&order=${order}`
         );
       })
       .catch((error) => {
@@ -142,35 +135,33 @@ function MypageBoard(props) {
     return `${date.getFullYear()}-${month}-${day} ${hour}:${minute}:${second}`;
   }
 
-  const getData = (posts, pageCount, searchType, keyword) => {
-    //검색버튼 누르면 검색결과 1페이지 리스트랑 페이지정보 넘어옴.
-    // console.log(posts, pageCount, searchType, keyword);
-    setPosts(posts);
-    setPageCount(pageCount);
-    setSearchType(searchType);
-    setKeyword(keyword);
-  };
-
   return (
     <div className={styles.boardContainer}>
-      <h1 className={styles.heading}>{props.title}</h1>
+      <h1 className={styles.heading}> <span className={styles.searchWord}>'{searchWord}'</span> 검색결과</h1>
+
       <div className={styles.orderButtons}>
-        <button value="postViews" onClick={addOrder}>
-          조회순
-        </button>
-        <button value="postLike" onClick={addOrder}>
-          추천순
-        </button>
-        <button value="replyCount" onClick={addOrder}>
-          댓글순
-        </button>
+        <BoardOption getUnifiedPost={getUnifiedPost} />
+        <div>
+          <button value="postRegdate" onClick={addOrder}>
+            최신순
+          </button>
+          <button value="postViews" onClick={addOrder}>
+            조회순
+          </button>
+          <button value="postLike" onClick={addOrder}>
+            추천순
+          </button>
+          <button value="replyCount" onClick={addOrder}>
+            댓글순
+          </button>
+        </div>
       </div>
 
       <table className={styles.faqTable}>
         <thead>
           <tr>
             <th className={styles.wNo}>번호</th>
-            <th className={styles.wBoardName}>작성게시판</th>
+            <th className={styles.wNo}>게시판</th>
             <th className={styles.wTitle}>제목</th>
             <th className={styles.wAuthor}>작성자</th>
             <th className={styles.wLike}>추천수</th>
@@ -180,9 +171,9 @@ function MypageBoard(props) {
         </thead>
         <tbody>
           {posts.map((post) => (
-            <tr>
+            <tr key={post.postNo}>
               <td>{post.postNo}</td>
-              <td>{post.boardkoreanname1}</td>
+              <td>{post.korBoardName}</td>
               <td className={styles.tableTitle}>
                 <Link to={`/${post.Grouping}/${post.board.boardName}/${post.postNo}`} className={styles.postTableTitle}>
                   {post.postTitle}
@@ -216,4 +207,4 @@ function MypageBoard(props) {
     </div>
   );
 }
-export default MypageBoard;
+export default UnifiedSearch;
