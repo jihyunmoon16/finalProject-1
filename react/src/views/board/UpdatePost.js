@@ -258,7 +258,11 @@ function UpdatePost() {
               component="span"
               className={styles.createPostErr}
             />
-            <Field autocomplete="off" className="titleField" name="title" />
+            <Field
+              autocomplete="off"
+              className={styles.titleField}
+              name="title"
+            />
             <label>본문: </label>
             <ErrorMessage
               name="content"

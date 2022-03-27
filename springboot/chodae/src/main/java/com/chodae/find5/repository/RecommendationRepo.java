@@ -30,6 +30,10 @@ public interface RecommendationRepo extends JpaRepository<Recommendation, Long> 
   
   @Query("SELECT r FROM Recommendation r WHERE r.post.postNo = ?1 ")
 	List<Recommendation> findAllRecommInPost(Long postNo);
+
+long countByApplication(String string);
+
+  //	long countByApplication("T");
 	
 	
   

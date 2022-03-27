@@ -12,14 +12,14 @@ import Login from "./views/login/Login"; //로그인
 import Auth from "./views/login/Auth";
 import Profile from "./views/login/Profile";
 
-//간이테스트 라우터 연결------------------------------------------
-import Test from "./views/test/Test";
-import Start from "./views/test/Start";
-import Score from "./views/test/Score";
-import Quiz from "./views/test/Quiz";
 
 //faq 라우터 연결------------------------------------------------
 import FAQ from "./views/faq/FAQ";
+
+//회원정보 관리 라우터 연결---------------------------------------
+import UserListComponent from "./views/Mypage/UserListComponent";
+import AddUserComponent from "./views/Mypage/AddUserComponent";
+import EditUserComponent from "./views/Mypage/EditUserComponent";
 
 //아이디 및 비밀번호 찾기 라우터 연결------------------------------
 import ForgetId from "./views/forget/ForgetId"; //아이디 찾기 처음화면
@@ -60,22 +60,21 @@ import Mypage from "./views/Mypage/Mypage"; //마이페이지
 import Mypagepost from "./views/Mypage/Mypagepost"; //faqpost변형
 import MypageBoard from "./views/Mypage/MypageBoard"; //faq변형
 import MypageComment from "./views/Mypage/Comment/MypageComment";
+
 //-----------------------------------------------
 import NotFound from "./views/NotFound"; //404 page
 import CreatePostCust from "./views/Study/CreatePostCust";
 import StudyPost from "./views/Study/StudyPost";
-
+import UpdateCusPost from "./views/Study/UpdateCusPost";
 //----------------------------------------------------------------------------
 import JobFair from "./views/event/Event"; //이벤트
+import TestMainPage from "./views/quiz/TestMainPage";
 
 //----------------------------------------------------------------------------
 import UnifiedSearch from "./views/unifiedSearch/UnifiedSearch";
 
 function App() {
   let [shoes, shoes1] = useState(data);
-
-
-
 
 
   const REST_API_KEY = "e9fdc52e3d35e33eb4ba5a732d2942ed";
@@ -100,11 +99,11 @@ function App() {
         {/* 전체검색페이지 기본 모든 게시판 검색/ 검색결과 페이지에서 게시판 선택 가능*/}
         <Route path="/unified/:boardname" element={<UnifiedSearch />} />
 
-        {/*심리테스트 메인화면*/}
-        <Route path="/Test" element={<Test />} />
-        <Route path="/Start" element={<Start />} />
-        <Route path="/Score" element={<Score />} />
-        <Route path="/Quiz" element={<Quiz />} />
+        {/* mypage 메인화면*/}
+        <Route path="/api/users" element={<UserListComponent/>}/> 
+        <Route path="/api/users/1" element={<EditUserComponent/>}/> 
+        <Route path="/api/users/2" element={<AddUserComponent/>}/> 
+
 
         {/* 아이디찾기 메인화면 */}
         <Route path="/find" element={<Find />}>
@@ -161,12 +160,14 @@ function App() {
         <Route path="/together/study" element={<Study />} />
         <Route path="/together/study/create" element={<CreatePostCust />} />
         <Route path="/together/study/:postno" element={<StudyPost />} />
+        <Route path="together/study/:postno/update" element={<UpdateCusPost />} />
         {/* 푸터 */}
         <Route path="/Company" element={<Company />} />
         <Route path="/tos" element={<Tos />} />
 
         {/* 이벤트 */}
         <Route path="/jobfair" element={<JobFair />} />
+        <Route path="/testmainpage" element={<TestMainPage />} />
 
         {/* 마이페이지 */}
         <Route path="/mypage" element={<Mypage title="마이페이지" />}>
@@ -178,6 +179,20 @@ function App() {
         </Route>
         {/* 404 페이지 */}
         <Route path="*" element={<NotFound />} />
+
+        {/* 마이페이지 */}
+        <Route path="/mypage" element={<Mypage title="마이페이지" />}>
+
+          <Route
+            path="/mypage/Mypagepost"
+            element={<MypageBoard title="마이페이지" />}
+          ></Route>
+          <Route path="/mypage/:postno" element={<Mypagepost />} />
+
+          <Route path="/mypage/MypageComment" element={<MypageComment />} />
+          <Route path="/mypage/:postno/update" element={<UpdatePost />} />
+        </Route>
+
       </Routes>
 
       <Footer />

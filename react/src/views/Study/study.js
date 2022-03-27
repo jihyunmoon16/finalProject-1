@@ -192,8 +192,10 @@ function Study(props) {
             </div>
 
             <div>
+
                 <SearchBar getData={getData} getPost={getStudy} />
                 {isLogin ? (
+
                     <div className={styles.writePostBtnWrapper}>
                         <button
                             onClick={() => {

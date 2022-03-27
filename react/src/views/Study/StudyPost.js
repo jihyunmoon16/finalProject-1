@@ -244,7 +244,7 @@ function StudyPost() {
                                 </button>
                                 <button
                                     className={styles.commentAddBtn}
-                                    onClick={() => {
+                                    onClick={(tableData = { postObject }) => {
                                         navigate("update");
                                     }}
                                 >

@@ -1,29 +1,32 @@
 const data = {
-    title: "FAQ (자주 묻는 질문)",
-    rows: [
-      {
-        title: "Q. 고객센터의 상담 시간을 알고 싶어요.",
-        content: "- 고객센터 전화번호 : 1544-9180<br>,- 상담 시간 : 평일 오전 9시 30분 ~ 오후 6시 (점심시간 : 오전 11시 30분 ~ 오후 1시 30분 / 주말, 공휴일 휴무)<br>- 전화 연결이 어려운 경우 카카오 상담톡으로 문의를 남겨주시면 확인 후 정성껏 답변드리겠습니다."
-      },
-      {
-        title: "Nunc maximus, magna at ultricies elementum",
-        content:
-          "Nunc maximus, magna at ultricies elementum, risus turpis vulputate quam. Und was ist, wenn der Satz länger ist ...? Geht es dann einfach weiter?"
-      },
-      {
-        title: "Curabitur laoreet, mauris vel blandit fringilla",
-        content:
-          "Curabitur laoreet, mauris vel blandit fringilla, leo elit rhoncus nunc"
-      },
-      {
-        title: "What is the package version",
-        content: "v1.0.5"
-      },
-      {
-        title: "Wie sollen wir arbeiten",
-        content: "Ich habe auch keine Ahnung"
-      }
-    ]
-  };
-  
-  export default data;
+  title: "FAQ (자주 묻는 질문)",
+  rows: [
+    {
+      title: "Q. 고객센터의 상담 시간을 알고 싶어요.",
+      content:
+        "A. 고객센터 전화번호 : 1544-9180<br>- 상담 시간 : 평일 오전 9시 30분 ~ 오후 6시 (점심시간 : 오전 11시 30분 ~ 오후 1시 30분 / 주말, 공휴일 휴무)<br>- 전화 연결이 어려운 경우 카카오 상담톡으로 문의를 남겨주시면 확인 후 정성껏 답변드리겠습니다.",
+    },
+    {
+      title: "Q. 스터디 모집 허위로 올리는거 신고 어떻게 하나요?.",
+      content:
+        "A. 1대1 문의사항에 게시글 번호와 작성자 닉네임, 게시글 내용을 화면캡쳐 하셔서 글을 남겨주시면 <br />담당자 확인 후 필요한 조치를 하도록 하겠습니다. 답변은 평일 기준으로 5일에서 10일 소요됩니다.",
+    },
+    {
+      title: "Q. 회원탈퇴하고 싶습니다.",
+      content:
+        "A. 회원 탈퇴를 원하는 경우, 아래의 경로를 따라 사이트에 접속하여 탈퇴 신청을 하시면 됩니다. <br> 회원탈퇴 시 유의사항으로는, 탈퇴 후 30일 이내 재가입이 불가능하며, 동일한 아이디로 재가입이 불가능 하니 이점 양해 부탁드립니다.",
+    },
+    {
+      title: "Q. 스터디 모집의 멘토가 되고 싶어요",
+      content:
+        "A. 스터디 모집의 멘토가 되길 희망하시는 경우, 1대1 문의게시판을 통해 담당자에게 간략한 본인소개 (경력, 분야 등)을 작성하여 보내주시면<br /> 담당자가 개별로 연락을 드리도록 하겠습니다. 답변은 회원가입시 등록한 메일주소로 보내드리며, 답변은 5일에서 10일 정도 소요됩니다.",
+    },
+    {
+      title: "Q. 개명을 하여 회원정보의 이름을 변경하고 싶어요",
+      content:
+        "A. 개명 후 성함은 초대 홈페이지 내에서 변경하시 수 없습니다.<br /> 다소 번거로우시더라도 아래 정보 확인 후 초대 고객센터(1588-1234)로 연락 주시기 바랍니다.",
+    },
+  ],
+};
+
+export default data;

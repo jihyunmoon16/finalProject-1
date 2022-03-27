@@ -1,0 +1,195 @@
+.createPost {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.createPostformContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 700px;
+  height: auto;
+  padding: 20px;
+  border-radius: 5px;
+}
+
+.boardNameField {
+  height: 40px;
+  margin-top: 10px;
+  margin-bottom: 50px;
+  border: 2px solid grey;
+  border-radius: 5px;
+  padding-left: 10px;
+  font-size: 20px;
+}
+.categorySelect {
+  display: flex;
+  flex-direction: row;
+}
+.clearCate {
+  margin-left: 16px;
+}
+select option[value=""][disabled] {
+  display: none;
+}
+
+.categoryField {
+  height: 40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 2px solid grey;
+  border-radius: 5px;
+  padding-left: 10px;
+  margin-right: 10px;
+  font-size: 20px;
+}
+.titleField {
+  height: 40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 2px solid grey;
+  border-radius: 5px;
+  padding-left: 10px;
+  font-size: 20px;
+}
+
+.bodyField {
+  height: 500px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 2px solid grey;
+  border-radius: 5px;
+  padding-left: 10px;
+  font-size: 20px;
+}
+
+.formContainer button {
+  margin-top: 15px;
+  height: 40px;
+  border: none;
+  background-color: #a6b1e1;
+  border-radius: 5px;
+  color: white;
+}
+
+.formContainer button:hover {
+  cursor: pointer;
+  background-color: #424874;
+}
+
+.createPostBtn {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.createPostBtn > button {
+  margin-left: 30px;
+}
+
+.createPostErr {
+  color: red;
+}
+.previewButton {
+  width: 100px;
+  margin: 0 0 20px 5px;
+  display: inline-block;
+  border-radius: 5px;
+  border: none;
+  padding: 5px;
+  background-color: #dcd6f7;
+  color: #424874;
+  font-weight: bold;
+}
+.previewImg {
+  position: relative;
+  width: 100px;
+  height: 100px;
+}
+
+.postBtnWrapper {
+  display: flex;
+  justify-content: end;
+}
+
+.postBtn {
+  display: inline-block;
+  border-radius: 5px;
+  border: none;
+  margin: 5px;
+  padding: 5px;
+  background-color: #dcd6f7;
+  color: #424874;
+  font-weight: bold;
+}
+
+.postBtn:hover {
+  background: #a6b1e1;
+}
+
+.createPostErr2 {
+  display: flex;
+  flex-flow: row;
+  margin-left: 160px;
+  width: 100%;
+}
+.createPostErr3 {
+  width: 40%;
+  color: red;
+  margin-top: -12px;
+  position: absolute;
+}
+.createPostErr4 {
+  width: 40%;
+  color: red;
+  margin-top: -12px;
+  margin-left: 230px;
+  position: absolute;
+}
+.createPostErr5 {
+  width: 40%;
+  color: red;
+  margin-top: -12px;
+  margin-left: 465px;
+  position: absolute;
+}
+
+.heading {
+  font-weight: bold;
+  font-size: 30px;
+  margin: 30px 0 10px 0;
+  color: #a6b1e1;
+}
+.resetButton {
+  margin-left: 10px;
+  margin-top: 3px;
+  margin-bottom: 20px;
+  border-radius: 3px;
+  height: 25px;
+  width: 60px;
+  background-color: #dcd6f7;
+  border: none;
+  color: #424874;
+  font-weight: bold;
+  cursor: pointer;
+  padding-bottom: 3px;
+}
+.previewButton {
+  margin-bottom: 24px;
+  border-radius: 3px;
+  height: 25px;
+  width: 60px;
+  background-color: #dcd6f7;
+  border: none;
+  color: #424874;
+  font-weight: bold;
+  cursor: pointer;
+}
+.previewImg {
+  position: relative;
+
+  width: 100px;
+  height: 100px;
+}

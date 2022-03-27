@@ -115,16 +115,62 @@ public class BoardServiceImpl implements BoardService {
  
 	
 	@Override
-	public long deleteImg(Long postNo) {
+	public Optional<Image2> updateImg(Post post ,MultipartFile file) {
 		
-		List<Image2> list = imageRepo.findByPostNo(postNo);
+		Optional<Image2> list = imageRepo.findByPostNo(post.getPostNo());
 		
-		for(Image2 img : list) {
-			imageRepo.deleteById(img.getId());;
+		System.out.println(list);
+		System.out.println("이미지 삭제???");
+		
+		
+		if(list.isPresent()) {
+		String filename= file.getOriginalFilename();
+		String saveFileName= post.getId()+"-"+post.getPostNo()+"-"+filename;
+			
+			Image2 newImg = list.get();
+			
+			String fileDownloadUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+					.path("/files/")
+					.path(saveFileName)
+					.toUriString();
+			
+			newImg.setFilename(saveFileName);
+			newImg.setFileDownloadUri(fileDownloadUri);
+			newImg.setPost(post);
+			newImg.setSize(file.getSize());
+			newImg.setFileType(file.getContentType());
+			
+			imageRepo.save(newImg);
+			
+	File newFileName = new File("C:\\chodae\\"+post.getId()+"-"+post.getPostNo()+"-"+filename);
+			
+			
+			if(!newFileName.exists()) { //파일 경로 없으면 생성.
+				if(newFileName.getParentFile().mkdirs()) {
+					try {
+						newFileName.createNewFile();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+	        
+	        
+	        try{
+	        	file.transferTo(newFileName);
+	            
+	        }catch (IllegalStateException | IOException e){
+	            e.printStackTrace();
+	        }
+			
+	        return list;
 		}
 		
-		return postNo;
+		return null;
+		
 	}
+		
+	
 	
 	
 
@@ -437,6 +483,9 @@ public class BoardServiceImpl implements BoardService {
 				}//for end
 			}//if end
 			
+			
+			
+			
 			postRepo.save(post);
 			updatedPostNo = post.getPostNo();
 			return post;		//업데이트된 글 번호를 반환
@@ -688,8 +737,8 @@ public class BoardServiceImpl implements BoardService {
 	public User accept(String nickname, Long postNo) {
 		
 		
-	//	User count = recommRepo.countByAccept(String application);
-		
+	long count = recommRepo.countByApplication("T");
+		System.out.println(count);
 		return null;
 	}
 

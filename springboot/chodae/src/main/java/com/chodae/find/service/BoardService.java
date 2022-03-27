@@ -1,5 +1,7 @@
 package com.chodae.find.service;
 
+import java.util.Optional;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
@@ -59,7 +61,7 @@ public interface BoardService {
 
 	long saveImg(MultipartFile file, Post post);
 	
-	long deleteImg(Long postNo);
+	Optional<Image2> updateImg(Post post, MultipartFile file);
 	
 	//내가 쓴 글
 	Page<Post> findMyPost(String nickname, String searchType, String keyword, Pageable pageable);

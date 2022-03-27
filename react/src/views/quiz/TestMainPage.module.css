@@ -1,0 +1,192 @@
+.testMainPageContainer {
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.alertContainer {
+  width: 70%;
+  height: 60vh;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.goBackBtnWrapper {
+  margin-top: 5%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.goBackBtn {
+  width: 400px;
+  height: 50px;
+  border-radius: 8px;
+  border: none;
+  margin: 10px;
+  background-color: #dcd6f7;
+  cursor: pointer;
+}
+
+.goBackLink {
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 15px;
+  color: #424874;
+}
+
+.goBackBtn:hover {
+  background: #a6b1e1;
+}
+/* StartScreen CSS */
+
+.startScreenContainer {
+  width: 70%;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  /* background-color: #6e39cf; */
+}
+
+.startScreenImage {
+  width: 100%;
+  border-radius: 10px;
+  height: 600px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  background-image: url("../../assets/logo.png");
+  background-repeat: none;
+  background-position: center;
+  background-size: cover;
+}
+
+.startScreenBtnWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.startScreenBtn {
+  padding: 3% 2%;
+  font-size: 30px;
+  background-color: #9162b1;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.startScreenBtn:hover {
+  background-color: #dcd6f7;
+  color: navy;
+}
+
+.startScreenH1 {
+  /* color: #6e39cf; */
+  margin-top: 10%;
+  padding: 2% 0;
+  text-align: center;
+  font-size: 3rem;
+}
+
+.startScreenP {
+  /* color: #6e39cf; */
+  text-align: center;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.nickname {
+  color: #9162b1;
+}
+
+/* levelTest CSS */
+
+.levelTestContainer {
+  width: 70%;
+  padding: 5% 0;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  background-color: #9162b1;
+  border-radius: 10px;
+}
+
+.questions {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  margin: 5% 0;
+  width: 80%;
+}
+
+.questions > button {
+  width: 100%;
+  padding: 10px 5px;
+  font-size: 2rem;
+  cursor: pointer;
+  border: none;
+}
+
+.questions > button:focus {
+  background-color: #dcd6f7;
+}
+
+.levelTestH1 {
+  color: white;
+  text-align: center;
+  width: 80%;
+}
+
+.nextQuestion {
+  width: 100%;
+  padding: 10px 5px;
+  font-size: 2rem;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: #dcd6f7;
+  /* background-color: #a6b1e1; */
+  border: none;
+}
+
+.nextQuestion:hover {
+  /* background-color: #dcd6f7; */
+  background-color: #a6b1e1;
+}
+
+/* EndScreen CSS */
+.EndScreenBtnWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.endScreenBtn {
+  padding: 2% 1%;
+  font-size: 20px;
+  background-color: #9162b1;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 20%;
+}
+
+.endScreenBtn:hover {
+  background-color: #dcd6f7;
+  color: navy;
+}

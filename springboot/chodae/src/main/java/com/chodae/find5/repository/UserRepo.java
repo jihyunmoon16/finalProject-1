@@ -41,8 +41,10 @@ public interface UserRepo extends JpaRepository<User, Long> {
 	@Query("UPDATE FROM User u set u.refreshToken = :token WHERE u.social = :social AND u.nickname = :nickname")
 	int updateRefreshToken(String token, String nickname, boolean social);
 	
-	
-	
+	Optional<User> findById(Long id);
+	User save(User user);
+	Optional<User> findByEmail(String email);
+	void delete(User user);
 
 
 	

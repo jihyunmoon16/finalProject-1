@@ -35,3 +35,12 @@
 .loginContainer input {
   border: 2px solid #dcd6f7;
 }
+
+.kakaoBtn {
+  border: none;
+  margin-top: 10px;
+  width: 400px;
+  height: 50px;
+  background-color: #fee500;
+  border-radius: 8px;
+}

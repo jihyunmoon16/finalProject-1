@@ -20,8 +20,9 @@ function Faq(props) {
   const location = useLocation();
 
   const idx = location.pathname.indexOf("/", 1);
-  // console.log(idx);
+  console.log(idx);
   const boardGroup = location.pathname.slice(1, idx);
+
   const boardName = location.pathname.slice(idx + 1);
 
   let currentUrl = "";
@@ -151,7 +152,7 @@ function Faq(props) {
         </thead>
         <tbody>
           {posts.map((post) => (
-            <tr>
+            <tr key={post.postNo}>
               <td>{post.postNo}</td>
               <td className={styles.tableTitle}>
                 <Link to={`${post.postNo}`} className={styles.postTableTitle}>
@@ -198,7 +199,6 @@ function Faq(props) {
           </div>
         ) : null}
       </div>
-
     </div>
   );
 }
