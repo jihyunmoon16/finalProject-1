@@ -192,7 +192,7 @@ function Study(props) {
 
             <div>
                 <SearchBar getData={getData} />
-                {localStorage.getItem("username") ? (
+                {nickname ? (
                     <div className={styles.writePostBtnWrapper}>
                         <button
                             onClick={() => {
