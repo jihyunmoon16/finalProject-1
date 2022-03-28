@@ -111,7 +111,8 @@ function CreatePostCust() {
                                 <span className={styles.clearCate}>
                                     <button
                                         className={styles.cateButton}
-                                        onClick={() => {
+                                        onClick={(e) => {
+                                            e.preventDefault();
                                             setFieldValue("location", "", false);
                                             setFieldValue("interest", "", false);
                                             setFieldValue("level", "", false);

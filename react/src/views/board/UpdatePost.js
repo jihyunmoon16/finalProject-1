@@ -158,20 +158,21 @@ function UpdatePost() {
               name="boardName"
               className={styles.boardNameField}
             >
-              <option value="study">스터디모집</option>
-              <option value="edu">국비교육</option>
+              {/* <option value="study">스터디모집</option> */}
+              {/* <option value="edu">국비교육</option> */}
               <option value="review">리뷰게시판</option>
               <option value="worry">고민상담</option>
               <option value="career">취업준비</option>
-              <option value="news">IT뉴스</option>
-              <option value="event">이벤트</option>
+              {/* <option value="news">IT뉴스</option>
+              <option value="event">이벤트</option> */}
             </Field>
             <div>
               <label>카테고리</label>
               <span className={styles.clearCate}>
                 <button
                   className={styles.postBtn}
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.preventDefault();
                     setFieldValue("location", "", false);
                     setFieldValue("interest", "", false);
                     setFieldValue("level", "", false);

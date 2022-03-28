@@ -27,6 +27,7 @@ public class PostContent {
 	@Column(name = "content_no")
 	private Long contentNo;
 	
+	@Column(length = 10000)
 	private String content; //게시글 내용 . 저장된 게시글 내용을 어떻게 db에 저장후 그대로 돌려주지? html 태그 자체를 저장? summernote?
 	
 }

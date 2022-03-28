@@ -72,6 +72,7 @@ import TestMainPage from "./views/quiz/TestMainPage";
 
 //----------------------------------------------------------------------------
 import UnifiedSearch from "./views/unifiedSearch/UnifiedSearch";
+import Underconstruction from "./views/board/itnews/Underconstruction";
 
 function App() {
   let [shoes, shoes1] = useState(data);
@@ -100,9 +101,9 @@ function App() {
         <Route path="/unified/:boardname" element={<UnifiedSearch />} />
 
         {/* mypage 메인화면*/}
-        <Route path="/api/users" element={<UserListComponent/>}/> 
-        <Route path="/api/users/1" element={<EditUserComponent/>}/> 
-        <Route path="/api/users/2" element={<AddUserComponent/>}/> 
+        <Route path="/api/users" element={<UserListComponent />} />
+        <Route path="/api/users/1" element={<EditUserComponent />} />
+        <Route path="/api/users/2" element={<AddUserComponent />} />
 
 
         {/* 아이디찾기 메인화면 */}
@@ -121,7 +122,7 @@ function App() {
         {/* 게시판 메인화면 */}
         <Route path="/latestposts" element={<FourTables />} />
         <Route path="/mainboard" element={<MainBoard />}>
-          <Route path="technews" element={<TechNews />} />
+          <Route path="technews" element={<Underconstruction />} />
           <Route path="career" element={<CustomerFaq title="취업준비" />} />
           <Route path="career/:postno" element={<FaqPost />} />
           <Route path="career/create" element={<CreatePost />} />

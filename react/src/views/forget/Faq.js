@@ -20,7 +20,7 @@ function Faq(props) {
   const location = useLocation();
 
   const idx = location.pathname.indexOf("/", 1);
-  console.log(idx);
+  // console.log(idx);
   const boardGroup = location.pathname.slice(1, idx);
 
   const boardName = location.pathname.slice(idx + 1);

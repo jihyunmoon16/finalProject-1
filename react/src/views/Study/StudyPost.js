@@ -9,8 +9,9 @@ import moment from "moment"; //날짜 수정하기 위해 모멘트 설치
 import CommentList from "../../component/CommentList"; //댓글 수정하면 나오는 입력창
 import Comment from "../../component/Comment";
 import useStore from "../../plugins/store";
-import { FaThumbsUp } from "react-icons/fa";
-
+import { AiFillHeart } from "react-icons/ai";
+import { AiOutlineHeart } from "react-icons/ai";
+import PostReply from "../../component/PostReply";
 function StudyPost() {
 
     const store = useStore();
@@ -61,18 +62,18 @@ function StudyPost() {
                 const post = response.data;
 
 
-                if (post.finduser === null) {
-                    // console.log("sorry")
-                } else if (post.finduser !== null) {
-                    // console.log(post.finduser)
-                    post.finduser.map((like) => {
-                        if (like === nickname) {
+                // if (post.finduser === null) {
+                //     console.log("sorry")
+                // } else if (post.finduser !== null) {
+                //     console.log(post.finduser)
+                //     post.finduser.map((like) => {
+                //         if (like === nickname) {
 
-                            setReplyRecommendOrNot(true);
-                        }
-                    })
+                //             setReplyRecommendOrNot(true);
+                //         }
+                //     })
 
-                }
+                // }
 
                 post.finduser2.map((like2) => {
                     // console.log(post.finduser2)
@@ -114,7 +115,7 @@ function StudyPost() {
 
     // 게시글 삭제
     const deletePost = (postNo) => {
-        axios.delete(`/${boardName}/${postNo}/nickname`).then(() => {
+        axios.delete(`/${boardName}/${postNo}/${nickname}`).then(() => {
             navigate(-1);
         });
     };
@@ -141,38 +142,7 @@ function StudyPost() {
                 console.log(error);
             });
     };
-    //댓글 삭제
-    const deleteReply = async function (replyNo) {
-        await axios({
-            method: "DELETE",
-            url: `/${boardName}/${postNo}/reply/${replyNo}/nickname`,
-        }).then(() => {
-            setComments(
-                comments.filter((val) => {
-                    return val.replyNo !== replyNo;
-                })
-            );
-            window.location.reload();
-        });
-    };
 
-    //댓글 수정
-    const updateReply = async function (updatedComment, replyNo) {
-        const formData = new FormData();
-        formData.append("content", updatedComment);
-        formData.append("nickname", nickname);
-
-        await axios
-            .put(`/${boardName}/${postNo}/reply/${replyNo}`, formData, {
-                headers: {
-                    "Content-Type": "multipart/form-data",
-                },
-            })
-            .then((response) => {
-                // console.log(response.data);
-                window.location.reload();
-            });
-    };
 
     // const nickname = "닉네임51";
 
@@ -189,10 +159,18 @@ function StudyPost() {
             })
             .then((response) => {
                 // console.log(response.data);
+                alert("추천하셨습니다");
             })
             .catch((error) => {
                 console.log(error);
             });
+
+        setPostRecommendOrNot(true);
+        setPostObject({
+            ...postObject,
+            postLike: postObject.postLike + 1,
+        });
+
     };
 
     const deleteLike = async (type, targetNo, nickname) => {
@@ -200,17 +178,23 @@ function StudyPost() {
             .delete(`/${boardName}/recomm/${type}/${targetNo}/${nickname}`)
             .then((response) => {
                 // console.log(response.data);
+                alert("추천을 취소하셨습니다");
             })
             .catch((error) => {
                 console.log(error);
             });
+        setPostRecommendOrNot(false);
+        setPostObject({
+            ...postObject,
+            postLike: postObject.postLike - 1,
+        });
     };
 
     const apply = async (targetNo) => {
         const formData = new FormData();
         formData.append("nickname", nickname);
         axios.post(`/${boardName}/${targetNo}`, formData).then((response) => {
-            // console.log(response.data)
+            // console.log(response.data);
         })
 
     }
@@ -228,7 +212,7 @@ function StudyPost() {
                 <div className={styles.postSection}>
 
                     <div className={styles.postCommentWrapper}></div>
-                    <CareerBoardTable moment={moment} tableData={postObject} />
+                    <CareerBoardTable tableData={postObject} />
                     <div className={styles.tempo}>
                         {/* <button onClick={() => { apply(postObject.postNo) }}>신청하기</button> */}
                         {postObject !== null && nickname === postObject.nickname && (
@@ -255,133 +239,72 @@ function StudyPost() {
                     </div>
                     {postObject !== null && nickname !== null ? (
                         <div>
-                            {!postRecommendOrNot ? (
-                                <FaThumbsUp
+                            {postRecommendOrNot ? (
+                                <AiFillHeart
                                     className={styles.recommend}
                                     onClick={() => {
-                                        addLike("post", postObject.postNo, nickname);
-                                        setPostRecommendOrNot(!postRecommendOrNot);
+                                        deleteLike("post", postObject.postNo, nickname);
                                     }}
                                 />
                             ) : (
-                                <FaThumbsUp
+                                <AiOutlineHeart
                                     className={styles.notRecommend}
                                     onClick={() => {
-                                        deleteLike("post", postObject.postNo, nickname);
-                                        setPostRecommendOrNot(!postRecommendOrNot);
+                                        addLike("post", postObject.postNo, nickname);
                                     }}
                                 />
                             )}
                         </div>
                     ) : (
-                        <FaThumbsUp
+                        <AiOutlineHeart
                             className={styles.recommend}
                             onClick={() => {
                                 alert("로그인한 유저만 추천할 수 있습니다.");
                             }}
                         />
                     )}
-
+                    <div>
+                        좋아요 &nbsp;
+                        <span className={styles.likeCount}>{postObject.postLike}</span>
+                    </div>
                     <div className={styles.listOfComments}>
                         {postObject != null &&
                             postObject.replies.map((reply, index) => {
-                                return (
-                                    <div className={styles.comment} key={index}>
-                                        <div className={styles.commentNickname}>
-                                            {reply.nickname}
-                                        </div>
-                                        {updateClicked === true ? (
-                                            <CommentList
-                                                sendComment={sendComment}
-                                                updateReply={updateReply}
-                                                reply={reply}
-                                            />
-                                        ) : (
-                                            <div>{reply.replyContent}</div>
-                                        )}
-                                        <span className={styles.commentTime}>
-                                            {moment(reply.replyRegdate).format("LLL")}
-                                        </span>
-                                        <span>
-                                            {nickname === reply.nickname && (
-                                                <div className={styles.commentAddBtnWrapper}>
-                                                    <button
-                                                        className={styles.commentAddBtn}
-                                                        onClick={() => {
-                                                            setUpdateClicked(!updateClicked);
-                                                        }}
-                                                    >
-                                                        {updateClicked ? "취소" : "수정"}
-                                                    </button>
-                                                    {updateClicked ? (
-                                                        <button
-                                                            className={styles.commentAddBtn}
-                                                            onClick={() => {
-                                                                setSendComment(true);
-                                                            }}
-                                                        >
-                                                            수정
-                                                        </button>
-                                                    ) : (
-                                                        <button
-                                                            className={styles.commentAddBtn}
-                                                            onClick={() => {
-                                                                deleteReply(reply.replyNo);
-                                                            }}
-                                                        >
-                                                            삭제
-                                                        </button>
-                                                    )}
-                                                </div>
-                                            )}
-                                            {/* db에서 회원 댓글 추천 유무 확인 */}
-                                            {nickname !== null ? (
-                                                <Comment props={props} reply={reply} />
-                                            ) : (
-                                                <FaThumbsUp
-                                                    className={styles.replyRecommend}
-                                                    onClick={() => {
-                                                        alert("로그인한 유저만 추천할 수 있습니다.");
-                                                    }}
-                                                />
-                                            )}
-                                        </span>
-                                    </div>
-                                );
+                                return <PostReply reply={reply} />;
                             })}
                     </div>
-
                     {nickname !== null ? (
                         <div className={styles.commentSection}>
-                            <div className={styles.commentNickname}>{nickname}</div>
-                            <div className={styles.commentInputWrapper}>
-                                <input
-                                    className={styles.commentInputBox}
-                                    type="text"
-                                    placeholder="댓글을 남겨보세요"
-                                    autoComplete="off"
-                                    value={newComment}
-                                    onChange={(event) => {
-                                        setNewComment(event.target.value);
-                                    }}
-                                ></input>
-                                <div className={styles.commentAddBtnWrapper}>
-                                    <button
-                                        className={styles.commentAddBtn}
-                                        onClick={() => {
-                                            addComment();
+                            <div className={styles.commentTextWrapper}>
+                                <div className={styles.commentNickname}>{nickname}</div>
+                                <div className={styles.commentInputWrapper}>
+                                    <input
+                                        className={styles.commentInputBox}
+                                        type="text"
+                                        placeholder="댓글을 남겨보세요"
+                                        autoComplete="off"
+                                        value={newComment}
+                                        onChange={(event) => {
+                                            setNewComment(event.target.value);
                                         }}
-                                    >
-                                        등록
-                                    </button>
+                                    ></input>
+                                    <div className={styles.commentAddBtnWrapper}>
+                                        <button
+                                            className={styles.commentAddBtn}
+                                            onClick={() => {
+                                                addComment();
+                                            }}
+                                        >
+                                            등록
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     ) : null}
                 </div>
-            )
-            }
-        </div >
+            )}
+        </div>
     );
 }
 
