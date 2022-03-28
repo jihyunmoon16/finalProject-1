@@ -1,0 +1,57 @@
+#main {
+  display: table;
+  width: 70%;
+  margin: auto;
+  margin-left: 13%;
+  height: 60vh;
+  text-align: center;
+}
+
+.fof {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.fof h1 {
+  font-size: 100px;
+  display: inline-block;
+  padding-right: 12px;
+  animation: type 0.5s alternate infinite;
+  color: #a6b1e1;
+  transition: all 0.6s;
+}
+.notFoundLinkWrapper {
+  margin-top: 40px;
+  transition: all 0.6s;
+}
+
+.notFoundLink {
+  text-decoration: none;
+  padding: 10px;
+  transition: all 0.6s;
+  width: 400px;
+  height: 50px;
+  border-radius: 8px;
+  border: none;
+  margin: 10px;
+  background-color: #dcd6f7;
+  color: #424874;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.notFoundLink:hover {
+  background: #a6b1e1;
+}
+
+@keyframes type {
+  from {
+    box-shadow: inset -3px 0px 0px #888;
+    transition: all 0.6s;
+  }
+  to {
+    box-shadow: inset -3px 0px 0px transparent;
+    transition: all 0.6s;
+  }
+}

@@ -1,16 +1,20 @@
 .createPost {
-  width: 100vw;
-  display: flex;
+  place-content: center;
   justify-content: center;
-  align-items: center;
+  /* width: 75%; */
+  margin: auto;
+  margin-right: 11%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .createPostformContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 700px;
-  height: auto;
+  width: 60%;
+  margin: auto;
   padding: 20px;
   border-radius: 5px;
 }

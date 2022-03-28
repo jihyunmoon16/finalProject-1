@@ -109,7 +109,8 @@ function CreatePost() {
               <span className={styles.clearCate}>
                 <button
                   className={styles.postBtn}
-                  onClick={() => {
+                  onClick={(e) => {
+                    e.preventDefault();
                     setFieldValue("location", "", false);
                     setFieldValue("interest", "", false);
                     setFieldValue("level", "", false);

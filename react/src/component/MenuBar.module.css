@@ -11,6 +11,12 @@
 .menuLink {
   text-decoration: none;
 }
+.menuLink:link{
+  color: #9162b1;
+}
+.menuLink:visited{
+  color: #9162b1;
+}
 
 .menu > ul {
   padding-left: 0;

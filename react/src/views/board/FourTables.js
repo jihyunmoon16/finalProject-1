@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styles from "./FourTables.module.css";
 
 const WorryPosts = lazy(() => import("../../component/fourTables/WorryPosts"));
-const CareerPosts = lazy(() =>import("../../component/fourTables/CareerPosts"));
+const CareerPosts = lazy(() => import("../../component/fourTables/CareerPosts"));
 const BookPosts = lazy(() => import("../../component/fourTables/BookPosts"));
 const TechPosts = lazy(() => import("../../component/fourTables/TechPosts"));
 
@@ -37,14 +37,14 @@ function FourTables() {
             <BookPosts />
           </Suspense>
         </div>
-        <div className={styles.tableBox}>
+        {/* <div className={styles.tableBox}>
           <Link className={styles.fourTableLink} to="/mainboard/technews">
             <h3>IT뉴스 게시판</h3>
           </Link>
           <Suspense fallback={<div>로딩중...</div>}>
             <TechPosts />
           </Suspense>
-        </div>
+        </div> */}
       </div>
     </div>
   );

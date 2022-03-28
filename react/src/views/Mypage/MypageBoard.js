@@ -179,8 +179,8 @@ function MypageBoard(props) {
           </tr>
         </thead>
         <tbody>
-          {posts.map((post) => (
-            <tr>
+          {posts.map((post, i) => (
+            <tr key={i}>
               <td>{post.postNo}</td>
               <td>{post.boardkoreanname1}</td>
               <td className={styles.tableTitle}>
