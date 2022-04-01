@@ -10,7 +10,7 @@
 
 [googlelink]: https://www.chodae.shop "초대"
 
-## 환경 
+## 개발 환경 
 Naver Cloud micro   
 Ubuntu 18.04    
 Nginx 1.14.0
