@@ -16,7 +16,7 @@ Ubuntu 18.04
 Nginx 1.14.0
    
 React 17.0.2       
-zustand 3.7.1   
+Zustand 3.7.1   
    
 Java 1.8   
 SpringBoot 2.6.3         
