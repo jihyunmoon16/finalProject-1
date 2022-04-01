@@ -3,10 +3,10 @@
    
 개발자 커뮤니티 웹사이트
    
-2022년 3월 28일 배포
+2022년 3월 28일 발표
    
     
-Link : [https://www.chodae.shop][googlelink]
+배포 주소 : [https://www.chodae.shop][googlelink]
 
 [googlelink]: https://www.chodae.shop "초대"
 
