@@ -15,10 +15,10 @@ function MypageBoard(props) {
 
   const store = useStore();
   const nickname =
-    useStore.getState().member !== null
-      ? useStore.getState().member.nickname
+    useStore.getState().nickname !== null
+      ? useStore.getState().nickname
       : null;
-  // console.log(useStore.getState().member);
+
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -113,7 +113,7 @@ function MypageBoard(props) {
         //업데이트
         setPostInfo(response.data);
         setPosts(postList);
-        console.log(postList);
+        // console.log(postList);
         setPageCount(response.data.totalPages);
 
         currentUrl = `/${boardGroup}/${boardName}?page=${page}&searchType=${searchType}&keyword=${keyword}&order=${order}`;

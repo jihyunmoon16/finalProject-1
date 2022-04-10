@@ -15,9 +15,9 @@ import org.springframework.web.multipart.MultipartFile;
 import com.chodae.find.domain.Category;
 import com.chodae.find.domain.Post;
 import com.chodae.find.domain.PostContent;
-import com.chodae.find5.repository.CategoryRepo;
-import com.chodae.find5.repository.PostRepo;
 import com.chodae.image.postService;
+import com.chodae.repository.CategoryRepo;
+import com.chodae.repository.PostRepo;
 
 import lombok.extern.java.Log;
 import net.coobird.thumbnailator.Thumbnails;

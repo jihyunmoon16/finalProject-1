@@ -15,13 +15,10 @@ import { AiOutlineHeart } from "react-icons/ai";
 function FaqPost() {
   const store = useStore();
   const nickname =
-    useStore.getState().member !== null
-      ? useStore.getState().member.nickname
+    useStore.getState().nickname !== null
+      ? useStore.getState().nickname
       : null;
-  const loginId =
-    useStore.getState().member !== null
-      ? useStore.getState().member.loginId
-      : null;
+
   const params = useParams();
   const postNo = params.postno;
   const location = useLocation();
@@ -226,7 +223,7 @@ function FaqPost() {
           <div className={styles.listOfComments}>
             {postObject != null &&
               postObject.replies.map((reply, index) => {
-                return <PostReply reply={reply} />;
+                return <PostReply key={index} reply={reply} />;
               })}
           </div>
 

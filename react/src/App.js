@@ -11,6 +11,7 @@ import { Route, Routes } from "react-router-dom"; //리액트 라우터
 import Login from "./views/login/Login"; //로그인
 import Auth from "./views/login/Auth";
 import Profile from "./views/login/Profile";
+import Naver from "./views/login/Naver";
 
 
 //faq 라우터 연결------------------------------------------------
@@ -60,6 +61,8 @@ import Mypage from "./views/Mypage/Mypage"; //마이페이지
 import Mypagepost from "./views/Mypage/Mypagepost"; //faqpost변형
 import MypageBoard from "./views/Mypage/MypageBoard"; //faq변형
 import MypageComment from "./views/Mypage/Comment/MypageComment";
+import MypageInfo from "./views/Mypage/MyInfo";
+
 
 //-----------------------------------------------
 import NotFound from "./views/NotFound"; //404 page
@@ -95,6 +98,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/" exact element={KAKAO_AUTH_URL}></Route>
         <Route path="/oauth/kakao/callback" exact element={<Auth />}></Route>
+        <Route path="/oauth/redirect" element={<Naver />}></Route>
         <Route path="/profile" exact element={<Profile />}></Route>
 
         {/* 전체검색페이지 기본 모든 게시판 검색/ 검색결과 페이지에서 게시판 선택 가능*/}
@@ -192,6 +196,9 @@ function App() {
 
           <Route path="/mypage/MypageComment" element={<MypageComment />} />
           <Route path="/mypage/:postno/update" element={<UpdatePost />} />
+
+          <Route path="/mypage/info" element={<MypageInfo />} />
+
         </Route>
 
       </Routes>

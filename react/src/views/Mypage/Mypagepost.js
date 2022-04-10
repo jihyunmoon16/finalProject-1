@@ -14,13 +14,10 @@ import { FaThumbsUp } from "react-icons/fa";
 function Mypagepost() {
   const store = useStore();
   const nickname =
-    useStore.getState().member !== null
-      ? useStore.getState().member.nickname
+    useStore.getState().nickname !== null
+      ? useStore.getState().nickname
       : null;
-  const loginId =
-    useStore.getState().member !== null
-      ? useStore.getState().member.loginId
-      : null;
+
   const params = useParams();
   const postNo = params.postno;
   const location = useLocation();

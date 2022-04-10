@@ -16,13 +16,10 @@ function Study(props) {
     const store = useStore();
     const isLogin = useStore((state) => state.isLogin);
     const nickname =
-        useStore.getState().member !== null
-            ? useStore.getState().member.nickname
+        useStore.getState().nickname !== null
+            ? useStore.getState().nickname
             : null;
-    const loginId =
-        useStore.getState().member !== null
-            ? useStore.getState().member.loginId
-            : null;
+
 
     const baseUrl = useStore((state) => state.url);
 

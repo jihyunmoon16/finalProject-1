@@ -20,7 +20,7 @@ function Header(props) {
       // console.log("리프레쉬토큰으로 토큰을 새로 받아서 자동로그인")
       const accessToken = localStorage.getItem("accessToken");
       const refreshToken = localStorage.getItem("refreshToken");
-      store.continueLogin(accessToken, refreshToken);
+      store.continueLogin(undefined, accessToken, refreshToken);
 
     } else {
       store.logout();
@@ -72,7 +72,7 @@ function Header(props) {
             ></input>
           </div>
 
-          {useStore.getState().member !== null ? (
+          {useStore.getState().isLogin ? (
             <nav className={styles.headerItems}>
               <Link className={styles.headerLink} to="/mypage/Mypagepost">
                 마이페이지

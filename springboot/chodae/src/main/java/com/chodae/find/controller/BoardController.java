@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.chodae.dto.PageDTO;
+import com.chodae.dto.PostDTO;
 import com.chodae.find.domain.Post;
 import com.chodae.find.domain.User;
+import com.chodae.service.BoardService;
 import com.chodae.find.domain.Reply;
-import com.chodae.find.dto.PostDTO;
-import com.chodae.find.service.BoardService;
-import com.chodae.find.vo.PageVO;
 
 import lombok.extern.java.Log;
 
@@ -40,7 +40,7 @@ public class BoardController {
 	//전체 통합검색 (제목+내용)
 	@Transactional
 	@GetMapping("/unified/{boardName}")
-	Page<Post> getUniSearchPost(@PathVariable String boardName, PageVO pageVo,
+	Page<Post> getUniSearchPost(@PathVariable String boardName, PageDTO pageVo,
 			@RequestParam String searchType,
 			@RequestParam String keyword,
 			@RequestParam(required = false, defaultValue = "postRegdate") String order){
@@ -57,7 +57,7 @@ public class BoardController {
 	//각 게시판 별 전체 조회 + 검색 
 	@Transactional
 	@GetMapping("/{boardName}")
-	Page<Post> getSearchPost(@PathVariable String boardName, PageVO pageVo,
+	Page<Post> getSearchPost(@PathVariable String boardName, PageDTO pageVo,
 			@RequestParam String searchType,
 			@RequestParam String keyword,
 			@RequestParam(required = false, defaultValue = "postRegdate") String order){
@@ -74,7 +74,7 @@ public class BoardController {
 	//내가쓴 게시글 조회 (닉네임)
 	@Transactional
 	@GetMapping("/mypage/post/{nickname}")
-	Page<Post> getMyPost(@PathVariable String nickname, PageVO pageVo,
+	Page<Post> getMyPost(@PathVariable String nickname, PageDTO pageVo,
 			@RequestParam String searchType,
 			@RequestParam String keyword,
 			@RequestParam(required = false, defaultValue = "postRegdate") String order){
@@ -89,7 +89,7 @@ public class BoardController {
 	//내가쓴 댓글 조회 (닉네임)
 	@Transactional
 	@GetMapping("/mypage/reply/{nickname}")
-	Page<Reply> getMyReply(@PathVariable String nickname, PageVO pageVo,
+	Page<Reply> getMyReply(@PathVariable String nickname, PageDTO pageVo,
 			@RequestParam String searchType,
 			@RequestParam String keyword,
 			@RequestParam(required = false, defaultValue = "replyRegdate") String order){

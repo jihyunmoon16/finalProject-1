@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.chodae.find.domain.User;
-import com.chodae.find5.repository.UserRepo;
+import com.chodae.repository.UserRepo;
 
 import lombok.RequiredArgsConstructor;
 

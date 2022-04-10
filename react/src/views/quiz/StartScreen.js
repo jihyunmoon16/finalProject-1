@@ -7,8 +7,8 @@ import useStore from "../../plugins/store";
 function StartScreen() {
   const store = useStore();
   const nickname =
-    useStore.getState().member !== null
-      ? useStore.getState().member.nickname
+    useStore.getState().nickname !== null
+      ? useStore.getState().nickname
       : null;
 
   const { gameState, setGameState } = useContext(GameStateContext);

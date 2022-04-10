@@ -16,18 +16,18 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import com.chodae.find.category.BoardGroup;
 import com.chodae.find.domain.Board;
 import com.chodae.find.domain.Category;
 import com.chodae.find.domain.User;
 import com.chodae.find.domain.Post;
 import com.chodae.find.domain.PostContent;
 import com.chodae.find.domain.Reply;
-import com.chodae.find5.repository.BoardRepo;
-import com.chodae.find5.repository.CategoryRepo;
-import com.chodae.find5.repository.PostRepo;
-import com.chodae.find5.repository.ReplyRepo;
-import com.chodae.find5.repository.UserRepo;
+import com.chodae.group.BoardGroup;
+import com.chodae.repository.BoardRepo;
+import com.chodae.repository.CategoryRepo;
+import com.chodae.repository.PostRepo;
+import com.chodae.repository.ReplyRepo;
+import com.chodae.repository.UserRepo;
 
 import lombok.extern.java.Log;
 
@@ -317,7 +317,12 @@ public class BoardPostTest {
 		reply.setPost(post);//게시글 번호, 댓글수 1 증가 반영
 		
 		//닉네임 => id로 변환하여 설정
-		User user = userRepo.findUserByNickname("닉네임1");
+		User user = null;
+		
+		Optional<User> result = userRepo.findUserByNickname("닉네임1");
+		if(result.isPresent()) {
+			user = result.get();			
+		}
 		reply.setId(user.getId());//작성 회원번호  (중복체크한 닉네임을  id로 바꿔서 등록) 
 		
 		

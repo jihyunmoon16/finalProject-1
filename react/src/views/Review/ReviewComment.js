@@ -11,8 +11,8 @@ import styles from "./ReviewComment.module.css";
 function ReviewComment(id) {
   const idindex = id;
   const nickname =
-    useStore.getState().member !== null
-      ? useStore.getState().member.nickname
+    useStore.getState().nickname !== null
+      ? useStore.getState().nickname
       : null;
 
 

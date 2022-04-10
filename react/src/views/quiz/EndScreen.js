@@ -9,8 +9,8 @@ function EndScreen() {
   // const store = useStore();
   const navigate = useNavigate();
   const nickname =
-    useStore.getState().member !== null
-      ? useStore.getState().member.nickname
+    useStore.getState().nickname !== null
+      ? useStore.getState().nickname
       : null;
   const { score, setScore, setGameState } = useContext(GameStateContext);
 
