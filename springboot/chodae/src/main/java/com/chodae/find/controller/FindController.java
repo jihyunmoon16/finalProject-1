@@ -1,21 +1,20 @@
 package com.chodae.find.controller;
 
-import java.util.List;
-
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.chodae.dto.MemberDTO;
 import com.chodae.find.domain.User;
-import com.chodae.find.service.UserFindService;
+import com.chodae.service.UserFindService;
 
 import lombok.extern.java.Log;
 
@@ -85,6 +84,63 @@ public class FindController {
 		log.info("로그인아이디:"+id+",업데이트 비밀번호:"+password);
 		return userFindService.updatePassword(id, password);
 	}
+	
+	@GetMapping("/user/check")
+	public ResponseEntity<String> isExistNickname(@RequestParam("nickname") String nickname) {
+		
+		String foundNickname = userFindService.isExistNickname(nickname);
+		
+		if(foundNickname != null) {
+			return new ResponseEntity<String>("EXIST", HttpStatus.FORBIDDEN);
+		}
+		
+		return new ResponseEntity<String>("NO", HttpStatus.OK);
+	}
+	
+	@GetMapping("/user/info")
+	public ResponseEntity<MemberDTO> getUserInfo(@RequestParam("nickname") String nickname) {
+		
+		MemberDTO dto = userFindService.getUserInfo(nickname);
+		
+		if(dto == null) {
+			return new ResponseEntity<MemberDTO>(dto, HttpStatus.NOT_FOUND);
+		}
+		
+		return new ResponseEntity<MemberDTO>(dto, HttpStatus.OK);
+	}
+	
+	@PutMapping("/user/info")
+	public ResponseEntity<String> updateUserInfo(
+											@RequestParam("currentNickname") String currentNickname,
+											@RequestParam("newNickname") String newNickname
+											) {
+		
+		if(currentNickname.equals(newNickname)) {
+			return new ResponseEntity<String>("SAME", HttpStatus.FORBIDDEN);
+		}
+		String msg = userFindService.updateUserInfo(currentNickname, newNickname);
+		
+		
+		if(msg == null) {
+			return new ResponseEntity<String>("FAIL", HttpStatus.FORBIDDEN);
+		}
+		
+		return new ResponseEntity<String>("SUCCESS", HttpStatus.OK);
+	}
+	
+	@DeleteMapping("/user/bye/{nickname}")
+	public ResponseEntity<MemberDTO> sleepUser(@PathVariable("nickname") String nickname) {
+		
+		MemberDTO dto = userFindService.sleepUser(nickname);
+		
+		if(dto == null) {
+			return new ResponseEntity<MemberDTO>(dto, HttpStatus.NOT_FOUND);
+		}
+		
+		return new ResponseEntity<MemberDTO>(dto, HttpStatus.OK);
+	}
+	
+	
 	
 	
 }

@@ -13,8 +13,8 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.chodae.find.domain.User;
 import com.chodae.find.domain.UserLog;
-import com.chodae.find.repository.UserLogRepository;
-import com.chodae.find.repository.UserRepository;
+import com.chodae.repository.UserLogRepository;
+import com.chodae.repository.UserRepo;
 
 import lombok.extern.java.Log;
 
@@ -25,7 +25,7 @@ import lombok.extern.java.Log;
 public class UserFindServiceTest {
 	
 	@Autowired
-	private UserRepository userRepo;
+	private UserRepo userRepo;
 	
 	@Autowired
 	private UserLogRepository userLogRepo;

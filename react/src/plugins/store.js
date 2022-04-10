@@ -7,10 +7,12 @@ import { persist } from "zustand/middleware"
 //로컬스토리지 저장. 리프레쉬토큰 , 액세스 토큰
 const useStore = create(persist(
     (set, get) => ({
-        member: null,
+        nickname: null,
+        role: null,
         isLogin: false,
+        frontUrl: "http://localhost:3000",
         url: "http://localhost:8000",
-        serachWord: null,
+        serachWord: null, //이전 검색어로 활용? 
         getSearchWord: () => {
             if (get().serachWord !== null) {
                 return get().serachWord;
@@ -24,15 +26,28 @@ const useStore = create(persist(
             }
             set({ serachWord: word });
         },
-        continueLogin: async (accessToken, refreshToken) => {
+        getBaseUrl: () => {
+            return get().url;
+        },
+        getFrontUrl: () => {
+            return get().frontUrl;
+        },
+        continueLogin: async (nickname, accessToken, refreshToken) => {
 
-            const dt = jwt_decode(accessToken);
-            const nickname = dt.member.nickname;
+            let nicknameInfo = null;
+
+            if (nickname === undefined) {
+                const old = jwt_decode(accessToken);
+                nicknameInfo = old.nickname;
+            } else {
+                nicknameInfo = nickname;
+            }
+
 
             try {
 
                 const formData = new FormData();
-                formData.append("nickname", nickname);
+                formData.append("nickname", nicknameInfo);
                 formData.append("refreshToken", refreshToken);
 
                 const response = await axios.post(`/api/refresh`, formData);
@@ -40,9 +55,9 @@ const useStore = create(persist(
                 localStorage.setItem("accessToken", response.data);
 
                 const newToken = response.data;
-                const de = jwt_decode(newToken);
+                const newInfo = jwt_decode(newToken);
 
-                get().setMemberInfo(de.member);
+                get().setMemberInfo(newInfo.nickname, newInfo.role);
 
             } catch (err) {
                 console.log(err);
@@ -51,27 +66,28 @@ const useStore = create(persist(
             }
 
         },
-        setMemberInfo: (member) => {
-            set({ member: member, isLogin: true });
-            // console.log("after login => member:", get().member, get().member.nickname);
+        setMemberInfo: (nickname, role) => {
+            set({ nickname: nickname, role: role, isLogin: true });
+
         },
-        getMemberInfo: () => {
-            if (get().member !== null) {
-                return get().member;
+        getNickname: () => {   //getMemberInfo
+            if (get().nickname !== null) {
+                return get().nickname;
             }
         },
         getMemberRole: () => {
-            if (get().member !== null) {
-                return get().member.authorities[0].authority;// "ROLE_USER"
+            if (get().role !== null) {
+                return get().role[0].authority;// "ROLE_USER" ????????????
             }
         },
         logout: () => {
             localStorage.clear();
             set({
-                member: null,
+                nickname: null,
+                role: null,
                 isLogin: false,
             });
-            // console.log("after logout => member:", get().member);
+
         },
     }),
     {

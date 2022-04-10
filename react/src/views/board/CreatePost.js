@@ -8,7 +8,7 @@ import Preview from "./Preview";
 import useStore from "../../plugins/store";
 
 function CreatePost() {
-  const member = useStore((state) => state.member);
+  const nicknameInfo = useStore((state) => state.nickname);
   let navigate = useNavigate();
 
   //글 수정시 글 수정페이지로 넘어오면서 기존 글 정보로 initialValues를 초기화 해줘야되나?
@@ -55,7 +55,7 @@ function CreatePost() {
     formData.append("title", title);
     formData.append("content", content);
     //나중에 데이터값 받아와서 수정
-    formData.append("nickname", member.nickname);
+    formData.append("nickname", nicknameInfo);
     formData.append("category", JSON.stringify(categoryArr));
 
     if (image !== undefined) {

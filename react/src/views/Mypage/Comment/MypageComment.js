@@ -36,8 +36,8 @@ function ReviewComment() {
   const [paginationNumber, setPaginationNumber] = useState(0);
 
   const nickname =
-    useStore.getState().member !== null
-      ? useStore.getState().member.nickname
+    useStore.getState().nickname !== null
+      ? useStore.getState().nickname
       : null;
 
   const [postObject, setPostObject] = useState(null);
@@ -87,13 +87,13 @@ function ReviewComment() {
           // console.log(date);
           // console.log(reply);
 
-          if (reply.boardName == "review") {
+          if (reply.boardName === "review") {
             reply.boardName = "리뷰게시판"
-          } else if (reply.boardName == "career") {
+          } else if (reply.boardName === "career") {
             reply.boardName = "취업준비게시판"
-          } else if (reply.boardName == "book") {
+          } else if (reply.boardName === "book") {
             reply.boardName = "리뷰게시판"
-          } else if (reply.boardName == "worry") {
+          } else if (reply.boardName === "worry") {
             reply.boardName = "고민상담게시판"
           }
         }

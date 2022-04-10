@@ -1,5 +1,6 @@
 package com.chodae.find.domain;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -21,7 +22,7 @@ import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.UpdateTimestamp;
 
-import com.chodae.find.category.MemberRole;
+import com.chodae.group.MemberRole;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import lombok.AllArgsConstructor;
@@ -41,7 +42,7 @@ import lombok.ToString;
 @Entity
 @DynamicInsert
 @DynamicUpdate
-public class User {
+public class User implements Serializable{
 	
 	@JsonIgnore
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,13 +53,10 @@ public class User {
 	@Column(unique = true)// DB테이블 필드 이름 login_id , 중복없는 유니크 필드
 	private String loginId; //로그인용 아이디
 	
-	
-	@NotNull
 	private String password;
-	@NotNull
+	
 	private String name;
 	
-	@NotNull
 	@Column(length = 45)
 	private String email;
 	

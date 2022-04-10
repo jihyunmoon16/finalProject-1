@@ -40,7 +40,7 @@ instance.interceptors.request.use(
         // console.log(expTime);
 
 
-        const nickname = info.member.nickname;
+        const nickname = info.nickname;
 
         if (!isExpired) {
             // console.log("아직 만료안됨");
@@ -61,7 +61,7 @@ instance.interceptors.request.use(
 
 
             try {
-                const response = await axios.post(`${baseURL}/api/refresh`, formData);
+                const response = await axios.post(`/api/refresh`, formData);
                 // console.log(response.data);
                 localStorage.setItem("accessToken", response.data);
 

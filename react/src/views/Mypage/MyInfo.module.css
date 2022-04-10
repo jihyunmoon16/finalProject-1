@@ -1,0 +1,63 @@
+.boardContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    width: 75%;
+    height: 55vh;
+    margin: auto;
+    margin-right: 11%;
+    gap: 10px;
+
+}
+
+.heading {
+    font-weight: bold;
+    font-size: 30px;
+    margin: 30px 0 10px 0;
+    color: #a6b1e1;
+}
+
+
+.nicknameInput {
+    height: 24px;
+}
+
+.checkBtn:hover {
+    background: #a6b1e1;
+}
+
+.checkBtn {
+    margin-left: 10px;
+    width: 100px;
+    height: 36px;
+    border-radius: 8px;
+    border: none;
+    margin: 10px;
+    background-color: #dcd6f7;
+    color: #424874;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.msgIcon {
+
+    font-size: 24px;
+}
+
+.errorMessage {
+    margin-left: 10px;
+    color: red;
+}
+
+.okMessage {
+    margin-left: 10px;
+    color: green;
+}
+
+.comBox {
+    margin-top: 50px;
+
+    display: flex;
+    justify-content: center;
+}

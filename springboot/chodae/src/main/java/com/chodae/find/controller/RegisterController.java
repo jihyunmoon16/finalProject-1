@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.chodae.find.domain.User;
-import com.chodae.find.service.RegService;
+import com.chodae.service.RegService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;

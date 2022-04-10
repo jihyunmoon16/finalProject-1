@@ -17,9 +17,9 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import com.chodae.find.category.MemberRole;
 import com.chodae.find.domain.User;
-import com.chodae.find.repository.UserRepository;
+import com.chodae.group.MemberRole;
+import com.chodae.repository.UserRepo;
 
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration
@@ -27,7 +27,7 @@ import com.chodae.find.repository.UserRepository;
 public class UserRepositoryTests {
 	
 	@Autowired
-	private UserRepository userRepo;
+	private UserRepo userRepo;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -131,71 +131,5 @@ public class UserRepositoryTests {
 			userRepo.save(user);
 		}
 	}
-	
-	@Test
-	public void testQueryMethod() {
-		List<User> user = userRepo.findUserByName("이름2");
-		System.out.println(user.toString());
-		
-//		forEach 구문 사용하여 데이터 출력가능
-//		userRepo.findUserByName("이름2").forEach(user1 -> System.out.println(user1));
-		
-	}
-	@Test
-	public void testFindId() {
-		userRepo.findUserByNameAndEmail("이름1", "aaa@aaa.com1").forEach(user -> System.out.println(user));
-		
-	}
-	@Test
-	public void testFindNameContaining() {
-		userRepo.findUserByNameContainingOrderByNameDesc("이름").forEach(user -> System.out.println(user));
-		
-	}
-	@Test
-	public void testFindNameContainingPaging() {
-		Pageable paging =  PageRequest.of(0, 10); //0페이지, 10건의 데이터를 가져와라.
-		List<User> results = userRepo.findUserByNameContainingOrderByNameDesc("이름",paging);
-		results.forEach(user -> System.out.println(user));
-		
-		
-	}
-	
-	@Test
-	public void testFindNickName() {
-		Pageable paging  = PageRequest.of(0, 10, Sort.Direction.DESC, "id" );
-		
-		Page<User> result = userRepo.findUserByNicknameContaining("닉네임", paging);
-		
-		System.out.println("현재페이지정보 = "+ result.getNumber());
-		System.out.println("getsize() 한페이지의크기 = "+ result.getSize());
-		System.out.println("total pages = "+ result.getTotalPages());
-		System.out.println("total count = "+ result.getTotalElements());
-		System.out.println("결과데이터수  = "+ result.getNumberOfElements());
-		System.out.println("이전페이지존재여부  = "+ result.hasPrevious());
-		System.out.println("다음페이지의 존재여부  = "+ result.hasNext());
-		System.out.println("마지막 페이지 여부   = "+ result.isLast());
-		System.out.println("다음 페이지 객체  = "+ result.nextPageable());
-		System.out.println("이전페이지객체 = "+ result.previousPageable());
-		System.out.println("결과 존재여부 = "+ result.hasContent());
-		System.out.println("검색시 사용된 sort정보= "+ result.getSort());
-		
-		List<User> list = result.getContent();
-		list.forEach(user -> System.out.println(user));
-		
-		
-		
-	}
-	
-//	@Test
-//	public void findUserByNameContaining() {
-//		userRepo.findUserByNameContaining(name).forEach(user -> System.out.println(user));
-//		
-//		
-//	}
-	@Test
-	public void findUserByNameContaining() {
-		userRepo.findUserByNameContaining(name).forEach(arr -> System.out.println(Arrays.deepToString(arr)));
-		
-		
-	}
+
 }

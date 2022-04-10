@@ -24,8 +24,8 @@ function PostReply({ reply }) {
 
   const store = useStore();
   const nickname =
-    useStore.getState().member !== null
-      ? useStore.getState().member.nickname
+    useStore.getState().nickname !== null
+      ? useStore.getState().nickname
       : null;
 
   useEffect(() => {

@@ -13,8 +13,8 @@ import useStore from "../../plugins/store";
 
 function Faq(props) {
   const store = useStore();
-  const member = useStore((state) => state.member);
-  // console.log(useStore.getState().member);
+  const role = store.getMemberRole();
+  // console.log(role);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -186,7 +186,7 @@ function Faq(props) {
 
       <div>
         <SearchBar getData={getData} getPost={getPost} />
-        {(member && boardName !== "notice") ? (
+        {(role === "ROLE_USER") ? (
           <div className={styles.writePostBtnWrapper}>
             <button
               onClick={() => {

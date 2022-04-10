@@ -15,7 +15,6 @@ import BoardOption from "./BoardOption";
 function UnifiedSearch() {
   const store = useStore();
   const searchWord = store.getSearchWord();
-  const member = useStore((state) => state.member);
 
   const navigate = useNavigate();
   const location = useLocation();
