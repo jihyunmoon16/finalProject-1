@@ -83,8 +83,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		
 		http.authorizeHttpRequests().antMatchers("/**").permitAll();
 		
-		http.authorizeRequests().anyRequest().authenticated();
-		
 		http.addFilterBefore(checkFilter(), UsernamePasswordAuthenticationFilter.class);
 		http.addFilterBefore(loginFilter(), UsernamePasswordAuthenticationFilter.class);
 	}

@@ -55,8 +55,6 @@ public class HeaderCheckFilter extends OncePerRequestFilter {
 			
 			if(request.getRequestURI().equals("/api/login")
 					||request.getRequestURI().equals("/api/refresh")
-//					||request.getRequestURI().equals("/login/oauth2/code/naver")
-//					||request.getRequestURI().equals("/oauth2/authorization/naver")
 					||request.getRequestURI().equals("/api/find/**")
 					||request.getRequestURI().equals("/reg/**")) {
 				log.info("@@@@@@ 해당 주소 토큰 검사 필요없음 @@@@@@@@@@@");
