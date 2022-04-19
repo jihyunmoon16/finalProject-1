@@ -10,8 +10,9 @@
 
 [googlelink]: https://www.chodae.shop "초대"
 
-임시 아이디: test
-임시 비밀번호: Test1234^^
+아이디: test
+
+비밀번호: Test1234^^
 
 ## :computer:	 개발 환경 
 Naver Cloud micro   
