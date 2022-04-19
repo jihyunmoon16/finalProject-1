@@ -10,9 +10,6 @@
 
 [googlelink]: https://www.chodae.shop "초대"
 
-아이디: test
-
-비밀번호: Test1234^^
 
 ## :computer:	 개발 환경 
 Naver Cloud micro   
