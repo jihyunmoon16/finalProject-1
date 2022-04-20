@@ -54,18 +54,32 @@ public class SocialLoginSuccessHandler implements AuthenticationSuccessHandler{
 		Map<String, Object> attrs = authMember.getAttr();
 		log.info("resAttr==="+attrs);
 		
-		Map map =  (Map) attrs.get("response");
-		log.info("map==="+map);
+		String nickname = null; //기존 소셜회원의 닉네임
+		String snsId = null; 
 		
-		String id  = (String) map.get("id");
-		String nickname  = (String) map.get("nickname");
-		log.info("id==="+id);
-		log.info("nickname==="+nickname); //기존 소셜회원의 닉네임
+		
+		if(attrs.get("kakao_account") != null) {
+			//카카오
+			snsId = ""+attrs.get("id");
+			nickname = (String) ((Map)attrs.get("properties")).get("nickname");
+			
+		}else {
+			//네이버 
+			Map map =  (Map) attrs.get("response");
+			log.info("map==="+map);
+			
+			snsId  = (String) map.get("id");
+			nickname  = (String) map.get("nickname"); 
+			log.info("id==="+snsId);
+			log.info("nickname==="+nickname); 
+			
+		}
 		
 		if(authMember.getNickname() != null) {
 			log.info("닉네임 정보 갱신 ");
 			nickname = authMember.getNickname();
 		}
+		
 		
 		String accessToken = null;
 		String refreshToken = null;

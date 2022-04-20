@@ -16,10 +16,6 @@ import { BrowserRouter as Routes, Route } from "react-router-dom";
 function Login() {
   const store = useStore();
 
-  const REST_API_KEY = "e9fdc52e3d35e33eb4ba5a732d2942ed";
-  const REDIRECT_URI = "http://localhost:3000/oauth/kakao/callback";
-  const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=b57361b0269da06ba5b8bf17e32058f5&redirect_uri=http://localhost:3000/oauth/kakao/callback&response_type=code`;
-
   const [loginId, setloginId] = useState("");
   const [password, setPassword] = useState("");
 
@@ -52,7 +48,6 @@ function Login() {
   };
 
   function goKakao() {
-    // window.location.href = KAKAO_AUTH_URL;
     window.location.href = `${store.getBaseUrl()}/oauth2/authorization/kakao`;
   }
 
@@ -91,9 +86,9 @@ function Login() {
         {
           <img className={styles.socialBtn} onClick={goNaver} src={naver} alt="naver_button" />
         }
-        {/* {
+        {
           <img className={styles.socialBtn} onClick={goKakao} src={kakao} alt="kakao_button" />
-        } */}
+        }
       </div>
     </div>
   );
