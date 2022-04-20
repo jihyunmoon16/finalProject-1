@@ -10,6 +10,13 @@
 
 [googlelink]: https://www.chodae.shop "초대"
 
+
+임시 아이디/비번
+
+**ID:** test    
+**PW:** Test1234^^
+
+
 ## :computer:	 개발 환경 
 Naver Cloud micro   
 Ubuntu 18.04    
