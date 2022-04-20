@@ -64,16 +64,18 @@ public class OAuthUserDetailsService extends DefaultOAuth2UserService {
 			log.info("네이버의  snsId ::"+snsId);
 			log.info("네이버의 닉네임 ::"+nickname);
 			
+		}else if (clientName.equals("Kakao")) {
+			
+			snsId = ""+oAuth2User.getAttribute("id");
+			Map<String, Object> properties = oAuth2User.getAttribute("properties");
+			nickname = (String) properties.get("nickname");
+			
+			log.info("카카오  @@@@응답 ::"+properties);
+			log.info("카카오  snsId ::"+snsId);
+			log.info("카카오 닉네임 ::"+nickname);
+
 		}
-		
-//		else if (clientName.equals("Kakao")) {
-//			...추후 추가 예정 //TODO 
-//		}
-//		else if (clientName.equals("Google")) {
-//			...추후 추가 예정//TODO
-//		}
-		
-		
+
 		User member = saveSocialMember(nickname, clientName, snsId);
 		log.info("member ::"+member);
 		
