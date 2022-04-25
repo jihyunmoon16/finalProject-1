@@ -16,12 +16,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import com.chodae.find.domain.Board;
-import com.chodae.find.domain.Category;
-import com.chodae.find.domain.User;
-import com.chodae.find.domain.Post;
-import com.chodae.find.domain.PostContent;
-import com.chodae.find.domain.Reply;
+import com.chodae.domain.Board;
+import com.chodae.domain.Category;
+import com.chodae.domain.Post;
+import com.chodae.domain.PostContent;
+import com.chodae.domain.Reply;
+import com.chodae.domain.User;
 import com.chodae.group.BoardGroup;
 import com.chodae.repository.BoardRepo;
 import com.chodae.repository.CategoryRepo;
@@ -34,7 +34,7 @@ import lombok.extern.java.Log;
 
 
 
-@Commit
+//@Commit
 @Log
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -70,15 +70,12 @@ public class BoardPostTest {
 		List<Post> list = postRepo.findPostByBoard(1);
 		list.forEach(post -> log.info(""+post));
 	}
-	
-	/////////////////////////////////////////////////////////
-	
-	
+
 	@Transactional
 	@Test
 	public void selectPostByBoard3() {
 		
-		List<Post> list = postRepo.findPost3(1);
+		List<Post> list = postRepo.findPostByBoardNo(1);
 		list.forEach(post -> log.info(""+post.getPostNo()+post.getReplies()));
 	}
 	@Transactional
@@ -134,13 +131,7 @@ public class BoardPostTest {
 			System.out.println(b.toString());
 			
 		}
-		
-		//System.out.println( BoardGroup.valueOf("공지사항").getValue());  //게시판이름으로 게시판번호 연결
-		
-//		IntStream.range(1, 200).forEach(i -> {
-//			
-//			
-//		});
+
 	}
 	
 	
@@ -149,22 +140,14 @@ public class BoardPostTest {
 	String title = "제목";
 	Integer level = 5;
 	Integer postLevel = 5;
+	String postNotice = "F";
+	String postComment="T";
+	String postDisplay="T";
 	
-	
-	String postNotice = "F";//공지사항여부
-	String postComment="T";//댓글사항 여부 
-	String postDisplay="T";// 게시 여부
-	
-
-	
-
 	//2. 게시글 데이터 세팅
 	@Transactional
 	@Test
 	public void insertPost() {
-		
-		//Post 데이터는 반드시 Board 객체에 대한 참조가 필요하다.(외래키로 게시판 번호 필요) 
-		//Board 객체를 잠시 생성해서  외래키로 사용되는 board_no 속성만 설정해주는게 더 효율적.  
 
 		//모든 게시판 별로 게시글 50개씩 데이터 입력 
 		BoardGroup[] arr = BoardGroup.values();
@@ -293,12 +276,12 @@ public class BoardPostTest {
 	
 	//게시글 조회 
 	@Test
-	@Transactional //지연로딩
+	@Transactional
 	public void selectPosts() {
 		
 		List<Post> list = postRepo.findAll();
 		list.forEach(post -> {
-			//댓글수 필드는 없어도 될려나...? 
+			
 			System.out.println(post);
 			log.info("글번호:"+post.getPostNo()+"내용번호"+post.getPostContent().getContentNo()+"댓글갯수:"+post.getReplies().size()+":카테고리개수="+post.getCategory().size()+","+post.getPostTitle()+","+post.getReplyCount()+post.getReplies());
 		});
@@ -431,18 +414,12 @@ public class BoardPostTest {
 			
 			
 			System.out.println("@@@@@@@@ "+postInfo);
-			postInfo.setReplyCount(postInfo.getReplyCount()+1); //세이브 뒤에서 써도 왜 이렇게 해도 댓글수가 증가하지?
+			postInfo.setReplyCount(postInfo.getReplyCount()+1); 
 		});
 		
 		
 	}
 	
-	
-	//조회하면 =>  게시글에 반영
-	//추천기록 =>저장 후 => 게시글 반영
-	
-	
-		
 	
 
 }

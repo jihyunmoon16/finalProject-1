@@ -10,8 +10,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.chodae.domain.User;
 import com.chodae.dto.MemberDTO;
-import com.chodae.find.domain.User;
 import com.chodae.repository.UserRepo;
 import com.chodae.security.util.JWTUtil;
 

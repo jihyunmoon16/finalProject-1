@@ -10,7 +10,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 
-import com.chodae.find.domain.Post;
+import com.chodae.domain.Post;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 

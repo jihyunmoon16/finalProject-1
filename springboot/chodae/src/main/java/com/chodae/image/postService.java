@@ -9,10 +9,10 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.chodae.find.domain.Board;
-import com.chodae.find.domain.Post;
-import com.chodae.find.domain.PostContent;
-import com.chodae.find.domain.User;
+import com.chodae.domain.Board;
+import com.chodae.domain.Post;
+import com.chodae.domain.PostContent;
+import com.chodae.domain.User;
 import com.chodae.group.BoardGroup;
 import com.chodae.repository.PostRepo;
 import com.chodae.repository.UserRepo;

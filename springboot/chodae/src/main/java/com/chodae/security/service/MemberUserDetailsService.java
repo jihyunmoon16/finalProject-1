@@ -10,7 +10,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import com.chodae.find.domain.User;
+import com.chodae.domain.User;
 import com.chodae.repository.UserRepo;
 import com.chodae.security.dto.MemberAuthDTO;
 

@@ -7,11 +7,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.chodae.domain.Post;
+import com.chodae.domain.Reply;
+import com.chodae.domain.User;
 import com.chodae.dto.PostDTO;
 import com.chodae.dto.ReplyDTO;
-import com.chodae.find.domain.Post;
-import com.chodae.find.domain.User;
-import com.chodae.find.domain.Reply;
 import com.chodae.image2.Image2;
 
 public interface BoardService {

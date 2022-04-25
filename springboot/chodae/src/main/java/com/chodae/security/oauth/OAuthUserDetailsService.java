@@ -14,8 +14,8 @@ import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Service;
 
-import com.chodae.find.domain.SnsInfo;
-import com.chodae.find.domain.User;
+import com.chodae.domain.SnsInfo;
+import com.chodae.domain.User;
 import com.chodae.group.MemberRole;
 import com.chodae.repository.SnsRepo;
 import com.chodae.repository.UserRepo;

@@ -12,7 +12,7 @@ import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-import com.chodae.find.domain.User;
+import com.chodae.domain.User;
 
 public interface UserRepo extends JpaRepository<User, Long> {
 

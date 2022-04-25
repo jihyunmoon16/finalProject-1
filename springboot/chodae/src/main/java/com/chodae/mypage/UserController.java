@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.chodae.find.domain.User;
+import com.chodae.domain.User;
 
 import lombok.RequiredArgsConstructor;
 

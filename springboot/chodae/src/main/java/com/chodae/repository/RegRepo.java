@@ -4,7 +4,7 @@ package com.chodae.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.chodae.find.domain.User;
+import com.chodae.domain.User;
 
 public interface RegRepo extends JpaRepository<User, Long> {
 

@@ -5,8 +5,8 @@ import java.util.Optional;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.chodae.domain.User;
 import com.chodae.dto.MemberDTO;
-import com.chodae.find.domain.User;
 
 public interface UserFindService {
 	

@@ -17,7 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import com.chodae.find.domain.User;
+import com.chodae.domain.User;
 import com.chodae.group.MemberRole;
 import com.chodae.repository.UserRepo;
 
