@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import com.chodae.find.domain.Category;
+import com.chodae.domain.Category;
 
 
 public interface CategoryRepo extends JpaRepository<Category, Long>{

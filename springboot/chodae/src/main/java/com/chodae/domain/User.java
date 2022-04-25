@@ -1,4 +1,4 @@
-package com.chodae.find.domain;
+package com.chodae.domain;
 
 import java.io.Serializable;
 import java.util.Date;

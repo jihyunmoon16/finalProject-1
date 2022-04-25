@@ -3,11 +3,11 @@ package com.chodae.dto;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.chodae.find.domain.Board;
-import com.chodae.find.domain.Category;
-import com.chodae.find.domain.Post;
-import com.chodae.find.domain.PostContent;
-import com.chodae.find.domain.Reply;
+import com.chodae.domain.Board;
+import com.chodae.domain.Category;
+import com.chodae.domain.Post;
+import com.chodae.domain.PostContent;
+import com.chodae.domain.Reply;
 import com.chodae.image.Image;
 import com.chodae.image2.Image2;
 

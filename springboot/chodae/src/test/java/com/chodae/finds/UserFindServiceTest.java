@@ -11,8 +11,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import com.chodae.find.domain.User;
-import com.chodae.find.domain.UserLog;
+import com.chodae.domain.User;
+import com.chodae.domain.UserLog;
 import com.chodae.repository.UserLogRepository;
 import com.chodae.repository.UserRepo;
 

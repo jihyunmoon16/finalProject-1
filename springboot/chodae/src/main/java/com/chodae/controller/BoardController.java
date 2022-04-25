@@ -1,4 +1,4 @@
-package com.chodae.find.controller;
+package com.chodae.controller;
 
 import javax.transaction.Transactional;
 
@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.chodae.domain.Post;
+import com.chodae.domain.Reply;
+import com.chodae.domain.User;
 import com.chodae.dto.PageDTO;
 import com.chodae.dto.PostDTO;
-import com.chodae.find.domain.Post;
-import com.chodae.find.domain.User;
 import com.chodae.service.BoardService;
-import com.chodae.find.domain.Reply;
 
 import lombok.extern.java.Log;
 

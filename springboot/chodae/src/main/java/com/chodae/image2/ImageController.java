@@ -12,9 +12,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.chodae.find.domain.Category;
-import com.chodae.find.domain.Post;
-import com.chodae.find.domain.PostContent;
+import com.chodae.domain.Category;
+import com.chodae.domain.Post;
+import com.chodae.domain.PostContent;
 import com.chodae.image.postService;
 import com.chodae.repository.CategoryRepo;
 import com.chodae.repository.PostRepo;

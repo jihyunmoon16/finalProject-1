@@ -4,8 +4,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.chodae.find.domain.Post;
-import com.chodae.find.domain.Recommendation;
+import com.chodae.domain.Post;
+import com.chodae.domain.Recommendation;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

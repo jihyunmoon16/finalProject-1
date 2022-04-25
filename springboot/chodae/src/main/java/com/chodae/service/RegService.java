@@ -8,7 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.chodae.find.domain.User;
+import com.chodae.domain.User;
 import com.chodae.group.MemberRole;
 import com.chodae.repository.RegRepo;
 import com.chodae.repository.UserRepo;

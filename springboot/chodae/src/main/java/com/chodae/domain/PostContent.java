@@ -1,4 +1,4 @@
-package com.chodae.find.domain;
+package com.chodae.domain;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
