@@ -1,5 +1,5 @@
 .sidebarWrapper {
-  border: 2px solid #9162b1;
+  border: 2px solid #6e39cf;
   border-radius: 5px;
   position: sticky;
   float: left;
@@ -20,7 +20,7 @@
   text-align: center;
   padding-bottom: 5px;
   padding-top: 10px;
-  border-bottom: 2px solid #9162b1;
+  border-bottom: 2px solid #6e39cf;
   background-color: #dcd6f7;
 }
 
@@ -45,7 +45,7 @@
   list-style: none;
   height: 50px;
   text-decoration: underline;
-  color: #9162b1;
+  color: #6e39cf;
   font-weight: bold;
 }
 

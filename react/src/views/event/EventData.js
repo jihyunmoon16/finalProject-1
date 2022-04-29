@@ -2,7 +2,7 @@ import Coex from "../../assets/event/coex.jpg";
 import Conference from "../../assets/event/conference.jpg";
 import Factory from "../../assets/event/factory.jpg";
 
-export const images = [
+export const EventData = [
   {
     title: "2022 잡페어",
     subtitle: "2022.04.01(금) ~ 2022.04.09(토)",

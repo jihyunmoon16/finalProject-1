@@ -1,4 +1,22 @@
-* {
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+:root {
+  --colorPurpleBlueChodae: #a6b1e1;
+  --colorPurpleDark: #9162b1;
+  --colorPurpleLight: #dcd6f7;
+  --colorPurpleBright: #6e39cf;
+  --colorNavyDark: #424874;
+  --colorWhiteCream: #f6f5ef;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1;
+  font-weight: 400;
 }

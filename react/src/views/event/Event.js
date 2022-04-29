@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Event.module.css";
-import { images } from "../event/EventData";
+import { EventData } from "../event/EventData";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 
@@ -8,11 +8,11 @@ function Event() {
   const [currentImg, setCurrentImg] = useState(0);
 
   function loop(count) {
-    if (count === images.length) {
+    if (count === EventData.length) {
       return (count = 0);
     }
     if (count < 0) {
-      return (count = images.length - 1);
+      return (count = EventData.length - 1);
     }
     return count;
   }
@@ -30,7 +30,7 @@ function Event() {
       <div className={styles.eventImageContainer}>
         <div
           className={styles.eventInner}
-          style={{ backgroundImage: `url(${images[currentImg].img})` }}
+          style={{ backgroundImage: `url(${EventData[currentImg].img})` }}
         >
           <div className={styles.eventBottom}></div>
           <div
@@ -43,8 +43,12 @@ function Event() {
           </div>
           <div className={styles.center}>
             <div className={styles.eventTextWrapper}>
-              <h1 className={styles.eventH1Tag}>{images[currentImg].title}</h1>
-              <p className={styles.eventPTag}>{images[currentImg].subtitle}</p>
+              <h1 className={styles.eventH1Tag}>
+                {EventData[currentImg].title}
+              </h1>
+              <p className={styles.eventPTag}>
+                {EventData[currentImg].subtitle}
+              </p>
             </div>
           </div>
           <div
@@ -68,57 +72,26 @@ function Event() {
               </th>
             </tr>
           </thead>
-          <tbody>
-            <tr style={{ textAlign: "left" }}>
-              <td rowspan="2">
-                <img
-                  className={styles.eventImageSize}
-                  src={images[0].img}
-                  alt="jobFairImage"
-                ></img>
-              </td>
-              <th>박람회</th>
-              <td>{images[0].title}</td>
-            </tr>
-            <tr style={{ textAlign: "left" }}>
-              <th>박람회 기간</th>
-              <td>{images[0].subtitle}</td>
-            </tr>
-          </tbody>
-          <tbody>
-            <tr style={{ textAlign: "left" }}>
-              <td rowspan="2">
-                <img
-                  className={styles.eventImageSize}
-                  src={images[1].img}
-                  alt="jobFairImage"
-                ></img>
-              </td>
-              <th>박람회</th>
-              <td>{images[1].title}</td>
-            </tr>
-            <tr style={{ textAlign: "left" }}>
-              <th>박람회 기간</th>
-              <td>{images[1].subtitle}</td>
-            </tr>
-          </tbody>
-          <tbody>
-            <tr style={{ textAlign: "left" }}>
-              <td rowspan="2">
-                <img
-                  className={styles.eventImageSize}
-                  src={images[2].img}
-                  alt="jobFairImage"
-                ></img>
-              </td>
-              <th>박람회</th>
-              <td>{images[2].title}</td>
-            </tr>
-            <tr style={{ textAlign: "left" }}>
-              <th>박람회 기간</th>
-              <td>{images[2].subtitle}</td>
-            </tr>
-          </tbody>
+          {/* 여기서부터 맵 돌리면 됨. */}
+          {EventData.map((data, i) => (
+            <tbody key={i}>
+              <tr style={{ textAlign: "left" }}>
+                <td rowspan="2">
+                  <img
+                    className={styles.eventImageSize}
+                    src={data.img}
+                    alt=""
+                  ></img>
+                </td>
+                <th>박람회</th>
+                <td>{data.title}</td>
+              </tr>
+              <tr style={{ textAlign: "left" }}>
+                <th>박람회 기간</th>
+                <td>{data.subtitle}</td>
+              </tr>
+            </tbody>
+          ))}
         </table>
       </div>
     </div>
