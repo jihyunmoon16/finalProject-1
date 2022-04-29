@@ -1,6 +1,6 @@
-import Coex from "../../assets/event/coex.png";
-import Conference from "../../assets/event/conference.png";
-import Factory from "../../assets/event/factory.png";
+import Coex from "../../assets/event/coex.jpg";
+import Conference from "../../assets/event/conference.jpg";
+import Factory from "../../assets/event/factory.jpg";
 
 export const EventData = [
   {
