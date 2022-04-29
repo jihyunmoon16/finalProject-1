@@ -1,113 +1,241 @@
-.mainContainer {
-  max-width: 1200px;
-  margin: auto;
+.sectionHero {
+  padding: 1rem 0 9.6rem 0;
 }
 
-.studyBg {
-  /* background: linear-gradient(#dcd6f7, #a6b1e1); */
-  height: 500px;
-  display: flex;
-  justify-content: center;
-  margin: auto;
-}
-
-.studyLeft {
-  color: #a6b1e1;
-  font-size: 28px;
-  display: flex;
-  justify-content: center;
+.hero {
+  max-width: 80rem;
+  display: grid;
+  grid-template-columns: 0.6fr 1.4fr;
+  margin: 0 auto;
   align-items: center;
+  padding: 0 2rem;
+  gap: 6rem;
 }
 
-.studyTitle {
-  margin: 0;
-}
-
-.studySubTitle {
-  margin: 0;
-  padding-top: -20px;
-}
-
-.mainBtn {
-  background-color: #9162b1;
-  padding: 15px 20px;
-  margin: 20px;
-  border: none;
+.heading {
+  font-size: 3.8rem;
   font-weight: 600;
-  cursor: pointer;
-  font-size: 20px;
-  color: #fff;
-  border-radius: 20px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  line-height: 1.05;
+  color: var(--colorNavyDark);
+  letter-spacing: -0.5px;
+  margin-bottom: 2.5rem;
 }
 
-.mainBtn:hover {
-  transform: translate(0, -6px);
-  box-shadow: 10px -10px 25px 0 rgba(166, 177, 225, 0.5),
-    -10px 10px 25px 0 rgba(143, 64, 248, 0.5);
-  background-color: #a6b1e1;
-}
-
-.studyRight {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.studyImg {
-  width: 500px;
-  border-radius: 10px;
-  margin-left: 50px;
-}
-
-.bootCampWrapper {
-  height: 100%;
-}
-.bootCampBg {
-  height: 100vh;
-  perspective: 10px;
+.description {
+  font-size: 1.2rem;
+  line-height: 1.5;
+  margin-bottom: 3rem;
 }
 
 .bootCampImg {
-  position: absolute;
   width: 100%;
-  object-fit: cover;
-  border-radius: 10px;
 }
 
-.bootCampText {
-  color: #a6b1e1;
-  font-size: 30px;
-  display: flex;
-  flex-direction: column;
+/* ========== 스터디 CSS =============== */
+
+.sectionStudy {
+  padding: 9.6rem 0;
+  background-color: var(--colorWhiteCream);
+}
+
+.studyTextBox {
   text-align: center;
 }
 
-.boardBg {
-  /* background: linear-gradient(#a6b1e1, #dcd6f7); */
-  height: 400px;
-  display: flex;
-  justify-content: center;
+.study {
+  max-width: 75rem;
+  padding: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 0 auto;
   align-items: center;
-  margin-top: 50px;
+  gap: 6rem;
+}
+
+.studyImgBox {
+  border: 3px solid var(--colorPurpleBright);
+  height: 25rem;
+  transition: all 0.35s;
+}
+
+.studyImgBox:hover {
+  transform: translate3d(0, -30px, 0);
+  transition: transform 0.35s;
+}
+
+.studyText {
+  padding: 3rem 2rem 2rem 2rem;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.studyImg {
+  width: 100%;
+  height: 70%;
+}
+
+.studyImgBox:hover {
+  cursor: pointer;
+}
+
+/* ========== 게시판 CSS =============== */
+
+.sectionBoard {
+  padding: 9rem 0;
+}
+
+.board {
+  max-width: 80rem;
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  margin: 0 auto;
+  align-items: center;
+  padding: 0 2rem;
+  gap: 6rem;
 }
 
 .boardImg {
-  width: 400px;
+  width: 100%;
+}
+
+/* ========== 버튼 CSS =============== */
+
+.mainBtn {
+  display: inline-block;
+  font-size: 1.25rem;
+  padding: 0.6rem 1rem;
   border-radius: 10px;
-  margin: 0 50px;
-}
-
-.boardText {
-  color: #a6b1e1;
-  font-size: 25px;
-  align-items: center;
-}
-.forumLink {
-  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: none;
+  background-color: var(--colorPurpleBlueChodae);
   color: white;
+  /* border-color: var(--colorPurpleBright); */
+  font-weight: 600;
 }
 
-.boardImg {
-  width: 500px;
+.mainBtn:hover {
+  background: var(--colorPurpleBright);
+}
+
+.newSearchBar {
+  height: 100px;
+  background-color: blue;
+  z-index: 1;
+}
+
+/* ======= 반응형 css ====== */
+
+@media only screen and (max-width: 1200px) {
+  .hero {
+    display: grid;
+    grid-template-columns: 0.8fr 1.2fr;
+    align-items: center;
+    padding: 0 4rem;
+    gap: 3rem;
+  }
+
+  .heading {
+    font-size: 2.8rem;
+  }
+
+  .description {
+    font-size: 1.1rem;
+  }
+  .study {
+    gap: 2rem;
+  }
+  .studyImgBox {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  /* ======= 국비교육 반응형 css ====== */
+
+  .sectionHero {
+    padding: 5rem 0;
+  }
+
+  .hero {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .bootCampImg {
+    width: 90%;
+    padding-left: 10%;
+  }
+
+  .heading {
+    font-size: 3.8rem;
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 1.5rem;
+  }
+
+  .description {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    margin-bottom: 1.5rem;
+  }
+
+  /* ======= 스터디모집 반응형 css ====== */
+  .sectionStudy {
+    padding: 5rem 0;
+  }
+
+  .study {
+    max-width: 75rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    margin: 0 auto;
+    align-items: center;
+    gap: 6rem;
+  }
+  .studyTextBox {
+    width: 80%;
+    margin: 0 auto;
+  }
+
+  .studyText {
+    font-size: 1.2rem;
+  }
+
+  .studyImgBox {
+    width: 19rem;
+    height: 22rem;
+  }
+
+  /* ======= 게시판 반응형 css ====== */
+  .sectionBoard {
+    padding: 5rem 0;
+  }
+
+  .board {
+    display: flex;
+    flex-direction: column-reverse;
+    gap: 3rem;
+  }
+
+  .boardImg {
+    width: 90%;
+    padding-left: 10%;
+  }
+
+  .textBox {
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .heading {
+    font-size: 2.8rem;
+  }
+
+  .description {
+    font-size: 1rem;
+  }
 }

@@ -12,9 +12,9 @@ export default function FAQ() {
         styles={{
           bgColor: "white",
           titleTextColor: `#a6b1e1`,
-          titleTextSize: "2.5rem",
+          titleTextSize: "2.2rem",
           rowTitleColor: "black",
-          rowTitleTextSize: "1.5rem",
+          rowTitleTextSize: "1.2rem",
           rowContentColor: "black",
           rowContentTextSize: "1rem",
           rowContentPaddingTop: "10px",

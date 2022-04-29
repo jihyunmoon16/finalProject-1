@@ -13,7 +13,6 @@ import Auth from "./views/login/Auth";
 import Profile from "./views/login/Profile";
 import Naver from "./views/login/Naver";
 
-
 //faq 라우터 연결------------------------------------------------
 import FAQ from "./views/faq/FAQ";
 
@@ -63,7 +62,6 @@ import MypageBoard from "./views/Mypage/MypageBoard"; //faq변형
 import MypageComment from "./views/Mypage/Comment/MypageComment";
 import MypageInfo from "./views/Mypage/MyInfo";
 
-
 //-----------------------------------------------
 import NotFound from "./views/NotFound"; //404 page
 import CreatePostCust from "./views/Study/CreatePostCust";
@@ -80,7 +78,6 @@ import Underconstruction from "./views/board/itnews/Underconstruction";
 function App() {
   let [shoes, shoes1] = useState(data);
 
-
   const REST_API_KEY = "e9fdc52e3d35e33eb4ba5a732d2942ed";
   const REDIRECT_URI = "http://localhost:3000/oauth/kakao/callback";
   const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=b57361b0269da06ba5b8bf17e32058f5&redirect_uri=http://localhost:3000/oauth/kakao/callback&response_type=code`;
@@ -88,7 +85,7 @@ function App() {
   return (
     <div className="App">
       <Header />
-      <MenuBar />
+      {/* <MenuBar /> */}
 
       <Routes>
         <Route path="/" element={<Main />} />
@@ -108,7 +105,6 @@ function App() {
         <Route path="/api/users" element={<UserListComponent />} />
         <Route path="/api/users/1" element={<EditUserComponent />} />
         <Route path="/api/users/2" element={<AddUserComponent />} />
-
 
         {/* 아이디찾기 메인화면 */}
         <Route path="/find" element={<Find />}>
@@ -150,7 +146,6 @@ function App() {
           <Route path="notice/create" element={<CreatePost />} />
           <Route path="notice/:postno/update" element={<UpdatePost />} />
 
-
           {/*Faq 메인화면 */}
           <Route path="/customer/FAQ" element={<FAQ />} />
         </Route>
@@ -165,7 +160,10 @@ function App() {
         <Route path="/together/study" element={<Study />} />
         <Route path="/together/study/create" element={<CreatePostCust />} />
         <Route path="/together/study/:postno" element={<StudyPost />} />
-        <Route path="together/study/:postno/update" element={<UpdateCusPost />} />
+        <Route
+          path="together/study/:postno/update"
+          element={<UpdateCusPost />}
+        />
         {/* 푸터 */}
         <Route path="/Company" element={<Company />} />
         <Route path="/tos" element={<Tos />} />
@@ -176,7 +174,10 @@ function App() {
 
         {/* 마이페이지 */}
         <Route path="/mypage" element={<Mypage title="마이페이지" />}>
-          <Route path="/mypage/Mypagepost" element={<MypageBoard title="마이페이지" />}></Route>
+          <Route
+            path="/mypage/Mypagepost"
+            element={<MypageBoard title="마이페이지" />}
+          ></Route>
           <Route path="/mypage/:postno" element={<Mypagepost />} />
 
           <Route path="/mypage/MypageComment" element={<MypageComment />} />
@@ -187,7 +188,6 @@ function App() {
 
         {/* 마이페이지 */}
         <Route path="/mypage" element={<Mypage title="마이페이지" />}>
-
           <Route
             path="/mypage/Mypagepost"
             element={<MypageBoard title="마이페이지" />}
@@ -198,9 +198,7 @@ function App() {
           <Route path="/mypage/:postno/update" element={<UpdatePost />} />
 
           <Route path="/mypage/info" element={<MypageInfo />} />
-
         </Route>
-
       </Routes>
 
       <Footer />

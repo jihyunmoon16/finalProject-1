@@ -3,14 +3,11 @@ import { useNavigate, useLocation, useParams } from "react-router-dom";
 import axios from "../../plugins/axios";
 import styles from "./FaqPost.module.css";
 import CareerBoardTable from "../../component/CareerBoardTable";
-import moment from "moment";
 import PostReply from "../../component/PostReply";
 
 import useStore from "../../plugins/store";
-// import { FaThumbsUp } from "react-icons/fa";
 import { AiFillHeart } from "react-icons/ai";
 import { AiOutlineHeart } from "react-icons/ai";
-// import { FaThumbsDown } from "react-icons/fa";
 
 function FaqPost() {
   const store = useStore();

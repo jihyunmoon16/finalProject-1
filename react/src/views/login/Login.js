@@ -4,14 +4,10 @@ import axios from "../../plugins/axios";
 import useStore from "../../plugins/store";
 
 import jwt_decode from "jwt-decode";
-import Profile from "./Profile";
 import styles from "./Login.module.css";
-import { Buffer } from "buffer";
 
 import kakao from "../../assets/kakao.png";
-import Auth from "../../views/login/Auth";
 import naver from "../../assets/naver2.png";
-import { BrowserRouter as Routes, Route } from "react-router-dom";
 
 function Login() {
   const store = useStore();
@@ -39,7 +35,6 @@ function Login() {
         localStorage.setItem("accessToken", accessToken);
         localStorage.setItem("refreshToken", refreshToken);
         navigate(-1);
-
       })
       .catch((error) => {
         alert("아이디와 비밀번호를 다시 확인해주세요.");
@@ -54,7 +49,6 @@ function Login() {
   function goNaver() {
     window.location.href = `${store.getBaseUrl()}/oauth2/authorization/naver`;
   }
-
 
   return (
     <div className={styles.loginContainer}>
@@ -82,13 +76,26 @@ function Login() {
       <Link to="/find/id">
         <button className={styles.loginBtn}>ID/PW 찾기</button>
       </Link>
-      <div>
+      <div className={styles.socialBtnWrapper}>
         {
-          <img className={styles.socialBtn} onClick={goNaver} src={naver} alt="naver_button" />
+          <img
+            className={styles.socialBtn}
+            onClick={goNaver}
+            src={naver}
+            alt="naver_button"
+          />
         }
         {
-          <img className={styles.socialBtn} onClick={goKakao} src={kakao} alt="kakao_button" />
+          <img
+            className={styles.socialBtn}
+            onClick={goKakao}
+            src={kakao}
+            alt="kakao_button"
+          />
         }
+      </div>
+      <div className={styles.signup}>
+        <Link to="/signup">회원가입하기</Link>
       </div>
     </div>
   );
