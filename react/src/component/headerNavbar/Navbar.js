@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useStore from "../../plugins/store";
 import styled from "styled-components";
@@ -63,6 +63,20 @@ const Navbar = (props) => {
       goUniSearch();
     }
   };
+
+  // props.props가 부모 컴포넌트에서 창 열고/닫기 버튼 누르는 
+  // 상태를 가져온거고, 만약 사이트 메뉴창이 열려있으면
+  // scroll disable 해주는 걸 useEffect에 넣어줌. 
+  useEffect(() => {
+    if (props.props) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+
+    console.log(props.props);
+  }, [props.props]);
+
   return (
     <>
       <IconContext.Provider value={{ color: "#fff" }}>

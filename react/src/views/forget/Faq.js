@@ -14,13 +14,11 @@ import useStore from "../../plugins/store";
 function Faq(props) {
   const store = useStore();
   const role = store.getMemberRole();
-  // console.log(role);
 
   const navigate = useNavigate();
   const location = useLocation();
 
   const idx = location.pathname.indexOf("/", 1);
-  // console.log(idx);
   const boardGroup = location.pathname.slice(1, idx);
 
   const boardName = location.pathname.slice(idx + 1);
@@ -51,7 +49,7 @@ function Faq(props) {
     getPost(boardName, page, qType, qWord, qOrder);
 
     setPaginationNumber(parseInt(page));
-  }, [props, page, qType, qWord, qOrder]);
+  }, [boardName]);
 
   const changePage = ({ selected }) => {
     getPost(boardName, selected + 1, qType, qWord, qOrder);
@@ -63,7 +61,13 @@ function Faq(props) {
   };
 
   //리액트화면에서 검색결과 창에서 x버튼 누르면 타입과 검색처 초기화?
-  async function getPost(boardName, page, searchType, keyword, order = "postRegdate") {
+  async function getPost(
+    boardName,
+    page,
+    searchType,
+    keyword,
+    order = "postRegdate"
+  ) {
     let url = `/${boardName}`;
 
     await axios
@@ -186,7 +190,7 @@ function Faq(props) {
 
       <div>
         <SearchBar getData={getData} getPost={getPost} />
-        {(role === "ROLE_USER") ? (
+        {role === "ROLE_USER" ? (
           <div className={styles.writePostBtnWrapper}>
             <button
               onClick={() => {
