@@ -91,6 +91,10 @@
 }
 
 @media only screen and (max-width: 900px) {
+  .headerContainer {
+    margin-bottom: 8rem;
+  }
+
   .showWrapper {
     display: flex;
     width: 6rem;

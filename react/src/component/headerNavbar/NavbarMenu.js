@@ -47,7 +47,6 @@ const NavbarMenu = ({ item }) => {
     <>
       <SidebarLink to={item.path} onClick={item.subNav && showSubnav}>
         <div>
-          {item.icon}
           <SidebarLabel>{item.title}</SidebarLabel>
         </div>
         <div>
@@ -62,7 +61,6 @@ const NavbarMenu = ({ item }) => {
         item.subNav.map((item, index) => {
           return (
             <DropdownLink to={item.path} key={index}>
-              {item.icon}
               <SidebarLabel>{item.title}</SidebarLabel>
             </DropdownLink>
           );
