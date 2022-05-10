@@ -33,34 +33,27 @@ import java.util.Optional;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+
 @Log
 @RestController
 public class ImageController {
 
+	private final ImageRepository imageRepository;
+	private final PostRepo postRepo;
+	private final postService postService;
 
 	   
-	 @Autowired
-	public ImageController(ImageRepository imageRepository, PostRepo postRepo, postService postService, CategoryRepo categoryRepo
-			) {
+	@Autowired
+	public ImageController(ImageRepository imageRepository, PostRepo postRepo, postService postService, CategoryRepo categoryRepo) {
 		
-		this.imageRepository =imageRepository;
+		this.imageRepository = imageRepository;
 		this.postRepo = postRepo;
 		this.postService = postService;
 	
 	}
    
-	private final ImageRepository imageRepository;
-   
-	private final PostRepo postRepo;
-	   
-	private final postService postService;
 	
-	
-
-
-    
-   
-	 @GetMapping(path = {"/get/image/{filename}"})
+	@GetMapping(path = {"/get/image/{filename}"})
 	public ResponseEntity<Resource> downloadFile(@PathVariable String filename,HttpServletRequest request) throws MalformedURLException{
 	
 			Path filePath = Paths.get("C:\\chodae\\"+filename);

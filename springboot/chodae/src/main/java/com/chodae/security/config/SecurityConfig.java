@@ -1,5 +1,6 @@
 package com.chodae.security.config;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -31,6 +32,13 @@ import lombok.extern.log4j.Log4j2;
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	private final UserRepo userRepo;
 	
+	//JWT signature
+	@Value("${jwt.access}")
+	private String SECRET_KEY; 
+	
+	@Value("${jwt.refresh}")
+	private String REFRESH_KEY;
+
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
@@ -111,7 +119,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
     
     @Bean
     public JWTUtil jwtUtil() {
-    	return new JWTUtil();
+    	return new JWTUtil(SECRET_KEY, REFRESH_KEY);
     }
     
     @Bean

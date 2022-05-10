@@ -36,14 +36,15 @@ public class Image2 {
 	
 	@Column(name = "filename")
 	private String filename;
+	
 	@Column(name = "fileDownloadUri")
 	private String fileDownloadUri;
+	
 	@Column(name = "fileType")
 	private String fileType;
+	
 	@Column(name = "size")
 	private long size;
-	
-
 	
 	@JsonBackReference
 	@ManyToOne
