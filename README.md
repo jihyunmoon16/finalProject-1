@@ -1,14 +1,7 @@
 # :email: **초**보개발자에게 **대**답하다, 초대   
 
-배포 : [https://www.chodae.shop](https://www.chodae.shop)
-
 	개발자 커뮤니티 프로젝트
 	2022.02.16 ~ 2022.03.28
-
-
-	체험 아이디 / 비밀번호  
-	ID: test  
-	PW: Test1234^^
 
 ## 목차
 - [기획 의도](https://github.com/creatingeveryday/finalProject#기획-의도)
